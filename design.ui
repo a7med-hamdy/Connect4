@@ -645,8 +645,12 @@ font-size: 20px;</string>
        </item>
        <item>
         <widget class="QLabel" name="player_score">
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 170, 0);
+font-size: 30px;</string>
+         </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
        </item>
@@ -663,6 +667,10 @@ font-size: 20px;</string>
        </item>
        <item>
         <widget class="QLabel" name="turn">
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 170, 0);
+font-size: 30px;</string>
+         </property>
          <property name="text">
           <string/>
          </property>
@@ -681,8 +689,12 @@ font-size: 20px;</string>
        </item>
        <item>
         <widget class="QLabel" name="ai_score">
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 170, 0);
+font-size: 30px;</string>
+         </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
        </item>

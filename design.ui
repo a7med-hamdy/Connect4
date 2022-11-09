@@ -1,0 +1,909 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Consolas</family>
+    <pointsize>10</pointsize>
+    <weight>9</weight>
+    <italic>false</italic>
+    <bold>false</bold>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">font: 75 10pt &quot;Consolas&quot;;
+background-color:rgb(0, 0, 40);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">
+
+</string>
+   </property>
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1280</width>
+      <height>720</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTabWidget::pane { /* The tab widget frame */
+    border-top: 2px solid #C2C7CB;
+    position: absolute;
+    top: -0.5em;
+}
+
+QTabWidget::tab-bar {
+    alignment: center;
+}
+
+/* Style the tab using the tab sub-control. Note that
+    it reads QTabBar _not_ QTabWidget */
+QTabBar::tab {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,
+                                stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);
+    border: 2px solid #C4C4C3;
+    border-bottom-color: #C2C7CB; /* same as the pane color */
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    min-width: 8ex;
+    padding: 2px;
+}
+
+QTabBar::tab:selected, QTabBar::tab:hover {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #fafafa, stop: 0.4 #f4f4f4,
+                                stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);
+}
+
+QTabBar::tab:selected {
+    border-color: #9B9B9B;
+    border-bottom-color: #C2C7CB; /* same as pane color */
+}
+QPushButton {
+	background-color: rgb(170, 0, 0);
+	border: 1px solid white;
+	border-radius: 7px;
+}
+QPushButton:pressed {
+    background-color: rgb(224, 0, 0);
+    border-style: inset;
+}
+</string>
+    </property>
+    <property name="tabShape">
+     <enum>QTabWidget::Rounded</enum>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Game</string>
+     </attribute>
+     <widget class="QWidget" name="gridLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>110</y>
+        <width>621</width>
+        <height>541</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="grid">
+       <property name="spacing">
+        <number>15</number>
+       </property>
+       <item row="1" column="0">
+        <widget class="QLabel" name="l40">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="7">
+        <widget class="QLabel" name="l06">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QLabel" name="l33">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="3">
+        <widget class="QLabel" name="l13">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QLabel" name="l12">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="5">
+        <widget class="QLabel" name="l04">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="5">
+        <widget class="QLabel" name="l14">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="5">
+        <widget class="QLabel" name="l24">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QLabel" name="l01">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="3">
+        <widget class="QLabel" name="l03">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLabel" name="l11">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="6">
+        <widget class="QLabel" name="l25">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="l52">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="l42">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="l41">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="l00">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="l50">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="7">
+        <widget class="QLabel" name="l16">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="l10">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="3">
+        <widget class="QLabel" name="l23">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="l31">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QLabel" name="l22">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="l30">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="6">
+        <widget class="QLabel" name="l05">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="7">
+        <widget class="QLabel" name="l26">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="6">
+        <widget class="QLabel" name="l15">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLabel" name="l32">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLabel" name="l21">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="2">
+        <widget class="QLabel" name="l02">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="l20">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="l51">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="5">
+        <widget class="QLabel" name="l34">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="6">
+        <widget class="QLabel" name="l35">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="7">
+        <widget class="QLabel" name="l36">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLabel" name="l43">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="5">
+        <widget class="QLabel" name="l44">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="6">
+        <widget class="QLabel" name="l45">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="7">
+        <widget class="QLabel" name="l46">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLabel" name="l53">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="5">
+        <widget class="QLabel" name="l54">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="6">
+        <widget class="QLabel" name="l55">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="7">
+        <widget class="QLabel" name="l56">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);
+border-radius: 37px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>-21</y>
+        <width>1251</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="label_4">
+         <property name="styleSheet">
+          <string notr="true">color: yellow;
+font-size: 20px;</string>
+         </property>
+         <property name="text">
+          <string>Player Score</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="player_score">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="styleSheet">
+          <string notr="true">color: yellow;
+font-size: 20px;</string>
+         </property>
+         <property name="text">
+          <string>Turn</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="turn">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="styleSheet">
+          <string notr="true">color: yellow;
+font-size: 20px;</string>
+         </property>
+         <property name="text">
+          <string>AI score</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="ai_score">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QFrame" name="frame">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>100</y>
+        <width>641</width>
+        <height>561</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 2px solid white;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="spinBox">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>270</y>
+        <width>201</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: yellow;
+font-size: 25px;</string>
+      </property>
+      <property name="maximum">
+       <number>1000000000</number>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox">
+      <property name="geometry">
+       <rect>
+        <x>28</x>
+        <y>370</y>
+        <width>271</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+font-size: 20px;</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>MinMax</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>MinMax with pruning</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>30</y>
+        <width>641</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <property name="spacing">
+        <number>25</number>
+       </property>
+       <property name="leftMargin">
+        <number>8</number>
+       </property>
+       <property name="rightMargin">
+        <number>8</number>
+       </property>
+       <item>
+        <widget class="QPushButton" name="bt0">
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::ClickFocus</enum>
+         </property>
+         <property name="text">
+          <string>insert</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="bt1">
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::ClickFocus</enum>
+         </property>
+         <property name="text">
+          <string>insert</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="bt2">
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::ClickFocus</enum>
+         </property>
+         <property name="text">
+          <string>insert</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="bt3">
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::ClickFocus</enum>
+         </property>
+         <property name="text">
+          <string>insert</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="bt4">
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::ClickFocus</enum>
+         </property>
+         <property name="text">
+          <string>insert</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="bt5">
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::ClickFocus</enum>
+         </property>
+         <property name="text">
+          <string>insert</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="bt6">
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::ClickFocus</enum>
+         </property>
+         <property name="text">
+          <string>insert</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>270</y>
+        <width>51</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: yellow;
+font-size: 50px;</string>
+      </property>
+      <property name="text">
+       <string>K:</string>
+      </property>
+     </widget>
+     <zorder>frame</zorder>
+     <zorder>gridLayoutWidget</zorder>
+     <zorder>horizontalLayoutWidget</zorder>
+     <zorder>spinBox</zorder>
+     <zorder>comboBox</zorder>
+     <zorder>horizontalLayoutWidget_2</zorder>
+     <zorder>label_2</zorder>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Tree</string>
+     </attribute>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1280</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

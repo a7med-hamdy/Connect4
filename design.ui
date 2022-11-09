@@ -28,9 +28,7 @@ background-color:rgb(0, 0, 40);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
-    <string notr="true">
-
-</string>
+    <string notr="true"/>
    </property>
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
@@ -627,7 +625,7 @@ border-radius: 37px;</string>
        <rect>
         <x>20</x>
         <y>-21</y>
-        <width>1251</width>
+        <width>1441</width>
         <height>81</height>
        </rect>
       </property>
@@ -889,6 +887,46 @@ font-size: 50px;</string>
        <string>K:</string>
       </property>
      </widget>
+     <widget class="QFrame" name="frame_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>0</y>
+        <width>271</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 2px solid white;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
+     <widget class="QFrame" name="frame_3">
+      <property name="geometry">
+       <rect>
+        <x>990</x>
+        <y>0</y>
+        <width>271</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 2px solid white;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
+     <zorder>frame_3</zorder>
+     <zorder>frame_2</zorder>
      <zorder>frame</zorder>
      <zorder>gridLayoutWidget</zorder>
      <zorder>horizontalLayoutWidget</zorder>

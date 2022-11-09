@@ -20,7 +20,8 @@ YELLOW = "yellow"
 ROWS = 6
 COLS = 7
 
-
+# x_list = [-1, 0, 1, 1, 1, 0,-1,-1]
+# y_list = [-1,-1,-1, 0, 1, 1, 1, 0]
 
 class Ui_MainWindow(QMainWindow):
     def __init__(self ):
@@ -35,6 +36,9 @@ class Ui_MainWindow(QMainWindow):
         self.turn_label = self.findChild(QLabel, "turn")
         self.turn_label.setText("Human")
 
+        self.human_score_label = self.findChild(QLabel, "player_score")
+        self.ai_score_label = self.findChild(QLabel, "ai_score")
+
         for i in range(ROWS):
             for j in range (COLS):
                 if i == 0:
@@ -44,24 +48,134 @@ class Ui_MainWindow(QMainWindow):
                 self.labels[i][j].setProperty("state", EMPTY)
         
 
-    def setColor(self, bt: QLabel)->None:
-        bt.setStyleSheet(f'background-color: {self.color};'+FIXED)
-        bt.setProperty("state", self.color)
-        self.switchTurn()
+    def setColor(self, lb: QLabel)->None:
+        lb.setStyleSheet(f'background-color: {self.color};'+FIXED)
+        lb.setProperty("state", self.color)
     
-    def handleButton(self, column : int):
+    def handleButton(self, column : int)->None:
+        found = False
         for i in range(ROWS):
             if self.labels[i][column].property("state") == EMPTY:
                 self.setColor(self.labels[i][column])
+                found = True
+                self.calcScore(i, column)
                 break
+        if found:
+            self.switchTurn()
 
-    def switchTurn(self):
+    def switchTurn(self)-> None:
         if self.color == RED:
             self.color = YELLOW
             self.turn_label.setText("AI")
         else:
             self.color = RED
             self.turn_label.setText("Human")
+
+    def calcScore(self, i : int , j : int)->None:
+        tmp = 0
+
+        counter_down = 0
+        #check down
+        i_new = i-1
+        while(i_new >= 0):
+            if(self.labels[i][j].property("state") == self.labels[i_new][j].property("state")):
+                counter_down += 1
+            else:
+                break
+            i_new -= 1
+        if counter_down >= 3:
+            tmp += 1
+
+        counter_left = 0
+        #check left
+        j_new = j-1
+        while(j_new >= 0):
+            if(self.labels[i][j].property("state") == self.labels[i][j_new].property("state")):
+                counter_left += 1
+            else:
+                break
+            j_new -= 1
+
+
+        counter_right = 0
+        #check right
+        j_new = j+1
+        while(j_new < COLS):
+            if(self.labels[i][j].property("state") == self.labels[i][j_new].property("state")):
+                counter_right += 1
+            else:
+                break
+            j_new += 1
+
+        if counter_left + counter_right >= 3:
+            tmp +=1
+
+        counter_down_left = 0
+        #check down left
+        j_new = j-1
+        i_new = i-1
+        while(j_new >= 0 and i_new >= 0):
+            if(self.labels[i][j].property("state") == self.labels[i_new][j_new].property("state")):
+                counter_down_left += 1
+            else:
+                break
+            i_new -= 1
+            j_new -= 1
+
+
+        counter_down_right = 0
+        #check down right
+        j_new = j+1
+        i_new = i-1
+        while(j_new < COLS and i_new >= 0):
+            if(self.labels[i][j].property("state") == self.labels[i_new][j_new].property("state")):
+                counter_down_right += 1
+            else:
+                break
+            i_new -= 1
+            j_new += 1
+
+
+
+        counter_up_left = 0
+        #check up left
+        j_new = j-1
+        i_new = i+1
+        while(j_new >= 0 and i_new < ROWS):
+            if(self.labels[i][j].property("state") == self.labels[i_new][j_new].property("state")):
+                counter_up_left += 1
+            else:
+                break
+            i_new += 1
+            j_new -= 1
+
+ 
+
+        counter_up_right = 0
+        #check up right
+        j_new = j+1
+        i_new = i+1
+        while(j_new < COLS and i_new < ROWS):
+            if(self.labels[i][j].property("state") == self.labels[i_new][j_new].property("state")):
+                counter_up_right += 1
+            else:
+                break
+            i_new += 1
+            j_new += 1
+
+        if counter_down_left + counter_up_right >= 3:
+            tmp+=1
+
+        if counter_down_right + counter_up_left >= 3:
+            tmp+=1
+        
+        if self.color == RED:
+            curr = int(self.human_score_label.text())
+            self.human_score_label.setText(str(curr+tmp))
+        else:
+            curr = int(self.ai_score_label.text())
+            self.ai_score_label.setText(str(curr+tmp))
+
 
 app = QtWidgets.QApplication(sys.argv)
 ui = Ui_MainWindow()

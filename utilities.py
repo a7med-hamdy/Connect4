@@ -16,7 +16,7 @@ class utilities:
             if equal==0:
                 score+=1
 
-        #check horzontal
+        #check horizontal bounderis
         start=col+3
         end=col-3
         while start>6:
@@ -24,7 +24,7 @@ class utilities:
         while end<0:
             end+=1
 
-
+        #check vertical boundaries
         startr=row+3
         endr=row-3
         while startr>5:
@@ -34,20 +34,20 @@ class utilities:
 
 
         tmpend=end
-
+        #check horizontal
         while tmpend<=start-3:
             equal=0
-            exsit=1
-            temp=board
-            temp2=board
+            exist=1
             for i in range(4):
-                if (temp>>(9*(tmpend+i)) & 7) > row:
-                    exsit=0
+                temp=board
+                temp2=board
+                if (temp>>(9*(tmpend+i)) & 7) <= row:
+                    exist=0
                     break
-                bit=temp2 & (1<<((9*tmpend+i)+3+row))
-                bit=bit>>((9*tmpend+i)+3+row)
+                bit=temp2 & (1<<((9*(tmpend+i))+3+row))
+                bit=bit>>((9*(tmpend+i))+3+row)
                 equal+=(bit^B)
-            if exsit and equal==0:
+            if exist==1 and equal==0:
                 score+=1
             tmpend+=1
 
@@ -56,18 +56,18 @@ class utilities:
         tmpendr=endr
         while tmpendh<=start-3 and tmpendr<=startr-3:
             equal=0
-            exsit=1
+            exist=1
             temp=board
             temp2=board
             j=tmpendr
             for i in range(4):
-                if (temp>>(9*(tmpendh+i)) & 7) >= j:
-                    exsit=0
+                if (temp>>(9*(tmpendh+i)) & 7) <= j:
+                    exist=0
                     break
-                bit=temp2 & (1<<((9*tmpend+i)+3+j))
-                bit=bit>>((9*tmpend+i)+3+j)
+                bit=temp2 & (1<<((9*(tmpend+i))+3+j))
+                bit=bit>>((9*(tmpend+i))+3+j)
                 equal+=(bit^B)
-            if exsit and equal==0:
+            if exist==1 and equal==0:
                 score+=1
             tmpendh+=1
             tmpendr+=1
@@ -76,20 +76,20 @@ class utilities:
         tmpendh=start
         tmpendr=endr
         # check right diagonal 
-        while tmpendh<=start-3 and tmpendr<=startr-3:
+        while tmpendh>=end+3 and tmpendr<=startr-3:
             equal=0
-            exsit=1
+            exist=1
             temp=board
             temp2=board
             j=tmpendr
             for i in range(4):
-                if (temp>>(9*(tmpendh+i)) & 7) >= j:
-                    exsit=0
+                if (temp>>(9*(tmpendh-i)) & 7) <= j:
+                    exist=0
                     break
-                bit=temp2 & (1<<((9*tmpend+i)+3+j))
-                bit=bit>>((9*tmpend+i)+3+j)
+                bit=temp2 & (1<<((9*(tmpend-i))+3+j))
+                bit=bit>>( (9*(tmpend-i)+3+j) )
                 equal+=(bit^B)
-            if exsit and equal==0:
+            if exist==1 and equal==0:
                 score+=1
             tmpendh-=1
             tmpendr+=1
@@ -99,31 +99,27 @@ class utilities:
 
     def action(self,sta,type):
         bit=1
-        score=sta.Aiscore
         if type=="h":
             bit=0
           
         actions=[]
-        scoreh=sta.humanscroe
+        scoreh=sta.humanscore
         score=sta.Aiscore
         remain=sta.remain-1
-        k=sta.k
         depth=sta.depth+1
         for i in range(7):
             temp=sta.board
             temp2=sta.board
             row=(temp>>(9*i)) & 7
-            row=row>>(9*i)
             if (row)<7:
                 next=temp2 |(bit << ( (9*i)+(3+row) ) )
-                row+=1
-                next=temp2 |( 7 <<  (9*i) )
-                next=temp2 & ( row <<  (9*i) )
+                next=temp2 + ( 1 <<  (9*i) )
+                #next=temp2 & ( row <<  (9*i) )
                 z=self.points(next,row,i,bit)
                 if type=="h":
-                    actions.append(state(next,remain,k,depth,score,scoreh+z))
+                    actions.append(state(next,remain,depth,score,scoreh+z))
                 else:
-                    actions.append(state(next,remain,k,depth,score+z,score))
+                    actions.append(state(next,remain,depth,score+z,score))
 
         return actions
 
@@ -134,8 +130,8 @@ class utilities:
         humanscore=0.0
         # check points for computer
         for i in range(7):
-            temp=sta
-            temp2=sta
+            temp=sta.board
+            temp2=sta.board
             row=(temp>>(9*i)) & 7
             row=row>>(9*i)
             if (row)<7:
@@ -148,8 +144,8 @@ class utilities:
             
         # check points for player
         for i in range(7):
-            temp=sta
-            temp2=sta
+            temp=sta.board
+            temp2=sta.board
             row=(temp>>(9*i)) & 7
             row=row>>(9*i)
             if (row)<7:

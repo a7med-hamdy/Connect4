@@ -16,7 +16,7 @@ if __name__== "__main__":
             x = x << 9
         temp = temp + x
         board = temp
-        print(s.search(state(board, 0, 4, 0, 0, 0),"AI",4,None,None))
+        print(s.search(state(board, 0, 0, 0, 0),"AI",4,None,None))
 
         
 

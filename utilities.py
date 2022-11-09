@@ -107,7 +107,6 @@ class utilities:
         scoreh=sta.humanscroe
         score=sta.Aiscore
         remain=sta.remain-1
-        k=sta.k
         depth=sta.depth+1
         for i in range(7):
             temp=sta.board
@@ -121,9 +120,9 @@ class utilities:
                 next=temp2 & ( row <<  (9*i) )
                 z=self.points(next,row,i,bit)
                 if type=="h":
-                    actions.append(state(next,remain,k,depth,score,scoreh+z))
+                    actions.append(state(next,remain,depth,score,scoreh+z))
                 else:
-                    actions.append(state(next,remain,k,depth,score+z,score))
+                    actions.append(state(next,remain,depth,score+z,score))
 
         return actions
 

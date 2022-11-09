@@ -24,25 +24,25 @@ class search:
         self.depth = max(nodes[0].depth, self.depth)
         if(self.depth == K):
             for i in nodes:
-                hrstc =  self.utility.heuristic(i.board)
+                hrstc =  self.utility.heuristic(i)
                 if(human_cost < hrstc):
                     play = i
                     human_cost = hrstc
                     if(beta != None):
                         beta = max(beta, human_cost)
                         if(human_cost > alpha):
-                            return human_cost
+                            return play
         else:
             for i in nodes:
                 val = self.search(i, "AI", K, alpha, beta)
-                if(human_cost < val):
+                if(human_cost < val.humanscore):
                     play = i
-                    human_cost = val
+                    human_cost = val.humanscore
                     if(beta != None):
                         beta = max(beta, human_cost)
                         if(human_cost > alpha):
                             return human_cost
-        return human_cost
+        return play
 
 
     def search_AI(self,node,K, alpha, beta):
@@ -52,25 +52,25 @@ class search:
         self.depth = max(nodes[0].depth, self.depth)
         if(self.depth == K):
             for i in nodes:
-                hrstc =  self.utility.heuristic(i.board)
+                hrstc =  self.utility.heuristic(i)
                 if(AI_cost < hrstc):
                     play = i
                     AI_cost = hrstc
                     if(alpha != None):
                         alpha = max(alpha, AI_cost)
                         if(AI_cost > beta):
-                            return AI_cost
+                            return play
         else:
             for i in nodes:
                 val = self.search(i, "h",K, alpha, beta)
-                if(AI_cost < val):
+                if(AI_cost < val.Aiscore):
                     play = i
-                    AI_cost = val
+                    AI_cost = val.Aiscore
                     if(alpha != None):
                         alpha = max(alpha, AI_cost)
                         if(AI_cost > beta):
-                            return AI_cost
-        return AI_cost
+                            return play
+        return play
 
 
     

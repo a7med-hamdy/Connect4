@@ -7,14 +7,17 @@ if __name__== "__main__":
     s = search()
     while(True):
         print(f"{board: b}")
-        a = int(input("enter column number"))
+        a = int(input("enter column number "))
+        while a > 6:
+            a = int(input("error enter column number "))
         temp = board
         x = 1
         for i in range(a):
             x = x << 9
         temp = temp + x
         board = temp
-        print(s.search(state(board, 0, 0, 0, 0),"AI",4,None,None))
+        stat = s.search(state(board, 0, 0, 0, 0),"AI",4,None,None)
+        board = stat.board
 
         
 

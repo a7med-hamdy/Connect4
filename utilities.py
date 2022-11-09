@@ -1,7 +1,8 @@
 from state import state
 class utilities:
-    
-    def score(sta,row,col,B):
+
+
+    def points(self,sta,row,col,B):
         #check vertical
         score=0
         board=sta
@@ -96,7 +97,7 @@ class utilities:
         return score
 
 
-    def action(sta,type):
+    def action(self,sta,type):
         bit=1
         score=sta.Aiscore
         if type=="h":
@@ -118,7 +119,7 @@ class utilities:
                 row+=1
                 next=temp2 |( 7 <<  (9*i) )
                 next=temp2 & ( row <<  (9*i) )
-                z=score(next,row,i,bit)
+                z=self.points(next,row,i,bit)
                 if type=="h":
                     actions.append(state(next,remain,k,depth,score,scoreh+z))
                 else:
@@ -128,8 +129,7 @@ class utilities:
 
 
 
-    def heuristic(sta):
-        
+    def heuristic(self,sta):
         Aiscore=0.0
         humanscore=0.0
         # check points for computer
@@ -143,7 +143,7 @@ class utilities:
                 row+=1
                 next=temp2 |( 7 <<  (9*i) )
                 next=temp2 & ( row <<  (9*i) )
-                z=score(next,row,i,1)
+                z=self.points(next,row,i,1)
                 Aiscore+=z
             
         # check points for player
@@ -157,8 +157,9 @@ class utilities:
                 row+=1
                 next=temp2 |( 7 <<  (9*i) )
                 next=temp2 & ( row <<  (9*i) )
-                z=score(next,row,i,0)
+                z=self.points(next,row,i,0)
                 humanscore+=z
+        return Aiscore-humanscore        
         # check potential score for computer
         # check potential score for player
         

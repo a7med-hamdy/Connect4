@@ -8,10 +8,9 @@ class search:
     def __init__(self):
         self.utility = utilities()
         self.explored = set()
-        self.depth = 0
+        
 
-    def search(self,node, player, K, alpha = -math.inf, beta = -math.inf):
-
+    def search(self,node, player, K,alpha = -math.inf, beta = -math.inf, ):
         if player == "AI":
             return self.search_AI(node, K, alpha , beta)
         else:
@@ -21,16 +20,18 @@ class search:
         human_cost = -math.inf
         play = node
         nodes =self.utility.action(node, "h")
-        self.depth = max(nodes[0].depth, self.depth)
+        depth = nodes[0].depth
+        print(len(nodes))
         for i in nodes:
             print(f"from humans states{i.board:b}")
-        if(self.depth == K):
+        if(depth == K):
             for i in nodes:
                 hrstc =  self.utility.heuristic(i)
                 if(human_cost < hrstc):
                     play = i
                     human_cost = hrstc
                     if(beta != None):
+                        print("hi beta")
                         beta = max(beta, human_cost)
                         if(human_cost > alpha):
                             return play
@@ -41,6 +42,7 @@ class search:
                     play = i
                     human_cost = val.humanscore
                     if(beta != None):
+                        print("hi beta")
                         beta = max(beta, human_cost)
                         if(human_cost > alpha):
                             return human_cost
@@ -53,14 +55,15 @@ class search:
         nodes =self.utility.action(node,"AI")
         for i in nodes:
             print(f"from Bot states{i.board:b}")
-        self.depth = max(nodes[0].depth, self.depth)
-        if(self.depth == K):
+        depth = nodes[0].depth
+        if(depth == K):
             for i in nodes:
                 hrstc =  self.utility.heuristic(i)
                 if(AI_cost < hrstc):
                     play = i
                     AI_cost = hrstc
                     if(alpha != None):
+                        print("hi alpha")
                         alpha = max(alpha, AI_cost)
                         if(AI_cost > beta):
                             return play
@@ -71,6 +74,7 @@ class search:
                     play = i
                     AI_cost = val.Aiscore
                     if(alpha != None):
+                        print("hi alpha")
                         alpha = max(alpha, AI_cost)
                         if(AI_cost > beta):
                             return play

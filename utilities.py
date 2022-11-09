@@ -108,7 +108,7 @@ class utilities:
         score=sta.Aiscore
         remain=sta.remain-1
         k=sta.k
-        depth=sta.dep+1
+        depth=sta.depth+1
         for i in range(7):
             temp=sta.board
             temp2=sta.board

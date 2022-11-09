@@ -1,10 +1,12 @@
 import math
 
+from utilities import utilities
+
 
 class search:
 
     def __init__(self):
-        self.utility = utility()
+        self.utility = utilities()
         self.explored = set()
         self.depth = 0
 
@@ -15,7 +17,7 @@ class search:
         else:
             return self.search_human(node, K, alpha, beta)  
     
-    def search_minmax_human(self,node,K, alpha, beta):
+    def search_human(self,node,K, alpha, beta):
         human_cost = -math.inf
         play = node
         nodes =self.utility.action(node, "h")
@@ -43,7 +45,7 @@ class search:
         return human_cost
 
 
-    def search_minmax_AI(self,node,K, alpha, beta):
+    def search_AI(self,node,K, alpha, beta):
         AI_cost = -math.inf
         play = node
         nodes =self.utility.action(node,"AI")

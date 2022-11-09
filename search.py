@@ -24,7 +24,7 @@ class search:
         self.depth = max(nodes[0].depth, self.depth)
         if(self.depth == K):
             for i in nodes:
-                hrstc =  self.utility.heuristic(i)
+                hrstc =  self.utility.heuristic(i.board)
                 if(human_cost < hrstc):
                     play = i
                     human_cost = hrstc
@@ -52,7 +52,7 @@ class search:
         self.depth = max(nodes[0].depth, self.depth)
         if(self.depth == K):
             for i in nodes:
-                hrstc =  self.utility.heuristic(i)
+                hrstc =  self.utility.heuristic(i.board)
                 if(AI_cost < hrstc):
                     play = i
                     AI_cost = hrstc

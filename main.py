@@ -1,5 +1,3 @@
-
-
 from search import search
 from state import state
 

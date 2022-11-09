@@ -39,6 +39,9 @@ class Ui_MainWindow(QMainWindow):
         self.human_score_label = self.findChild(QLabel, "player_score")
         self.ai_score_label = self.findChild(QLabel, "ai_score")
 
+        self.spin = self.findChild(QSpinBox, "spinBox")
+        self.combo = self.findChild(QComboBox, "comboBox")
+
         for i in range(ROWS):
             for j in range (COLS):
                 if i == 0:
@@ -67,6 +70,11 @@ class Ui_MainWindow(QMainWindow):
         if self.color == RED:
             self.color = YELLOW
             self.turn_label.setText("AI")
+            k = self.spin.value()
+            s = self.combo.currentIndex()
+            '''
+                do something with ai
+            '''
         else:
             self.color = RED
             self.turn_label.setText("Human")

@@ -22,6 +22,8 @@ class search:
         play = node
         nodes =self.utility.action(node, "h")
         self.depth = max(nodes[0].depth, self.depth)
+        for i in nodes:
+            print(f"from humans states{i.board:b}")
         if(self.depth == K):
             for i in nodes:
                 hrstc =  self.utility.heuristic(i)
@@ -49,6 +51,8 @@ class search:
         AI_cost = -math.inf
         play = node
         nodes =self.utility.action(node,"AI")
+        for i in nodes:
+            print(f"from Bot states{i.board:b}")
         self.depth = max(nodes[0].depth, self.depth)
         if(self.depth == K):
             for i in nodes:

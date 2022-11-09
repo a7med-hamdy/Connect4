@@ -100,6 +100,7 @@ class utilities:
     def action(self,sta,type):
         bit=1
         if type=="h":
+            #print("hi")
             bit=0
           
         actions=[]
@@ -112,8 +113,11 @@ class utilities:
             temp2=sta.board
             row=(temp>>(9*i)) & 7
             if (row)<7:
+                temp2=temp2 + ( 1 <<  (9*i) )
                 next=temp2 |(bit << ( (9*i)+(3+row) ) )
-                next=temp2 + ( 1 <<  (9*i) )
+                #print(f"{next:b}")
+                
+                #print(f"{next:b}")
                 #next=temp2 & ( row <<  (9*i) )
                 z=self.points(next,row,i,bit)
                 if type=="h":

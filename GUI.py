@@ -107,12 +107,17 @@ class Ui_MainWindow(QMainWindow):
             self.color = YELLOW
             self.turn_label.setText("AI")
             k = self.spin.value()
-            s = self.combo.currentIndex()
+            z = self.combo.currentIndex()
             # depth and value tuple won't work think of another solution
             self.board = self.util.update(self.board, column)
             stat = state(self.board, column, int(self.ai_score_label.text()), int(self.human_score_label.text()))
             S = search()
-            stat = S.search(stat, "AI", k, alpha= None, beta= None)
+            
+            if z == 1:
+                stat = S.search(stat, "AI", k)
+            else:
+                stat = S.search(stat, "AI", k, alpha= None, beta= None)
+
             returned = S.tree_nodes
             E = S.tree_edges
             self.plotter.set_param([k[1] for k in returned],

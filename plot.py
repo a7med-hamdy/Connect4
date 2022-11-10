@@ -38,7 +38,7 @@ class Plotter(QtWidgets.QWidget):
         lay = G.layout_reingold_tilford(root = [self.vertices[0]])
 
         position = {k: lay[k] for k in self.vertices}
-        print(position)
+        # print(position)
         Y = [lay[k][1] for k in self.vertices]
         M = max(Y)
 

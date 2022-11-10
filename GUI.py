@@ -6,6 +6,8 @@ from PyQt5.QtCore import *
 from PyQt5 import uic
 from plot import Plotter
 from utilities import utilities
+from state import state
+from search import search
 
 FIXED = '''
 border: 2px insert rgb(85, 255, 255);
@@ -76,19 +78,22 @@ class Ui_MainWindow(QMainWindow):
                 self.calcScore(i, column)
                 break
         if found:
-            self.board = self.util.update(self.board, column)
-            self.switchTurn()
+            self.switchTurn(column)
             
 
-    def switchTurn(self)-> None:
+    def switchTurn(self, column: int)-> None:
         if self.color == RED:
             self.color = YELLOW
             self.turn_label.setText("AI")
             k = self.spin.value()
             s = self.combo.currentIndex()
             # depth and value tuple won't work think of another solution
-            returned = [("1",2),("5",6),("7",2),("9",0),("4",4)]
-            E = [("1","5"),("1","7"),("7","9"),("7","4")]
+            self.board = self.util.update(self.board, column)
+            stat = state(self.board, column, int(self.ai_score_label.text()), int(self.human_score_label.text()))
+            S = search()
+            S.search(stat, "AI", k, alpha= None, beta= None)
+            returned = S.tree_nodes
+            E = S.tree_edges
             self.plotter.set_param([k[1] for k in returned],
                         [tuple(int(item) for item in t) for t in E],[int(k[0]) for k in returned],self.combo.currentText())
 

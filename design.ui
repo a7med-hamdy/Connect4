@@ -730,6 +730,9 @@ font-size: 30px;</string>
        <string notr="true">color: yellow;
 font-size: 25px;</string>
       </property>
+      <property name="minimum">
+       <number>1</number>
+      </property>
       <property name="maximum">
        <number>1000000000</number>
       </property>

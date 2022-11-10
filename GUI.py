@@ -4,7 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5 import uic
-from script import Plotter
+from plot import Plotter
 
 FIXED = '''
 border: 2px insert rgb(85, 255, 255);

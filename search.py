@@ -31,25 +31,19 @@ class search:
         play = node
         nodes =self.utility.action(node, "h")
         depth += 1
-        #node.node_num-1 = self.nodes_count-1
-        #print(f"from human states {depth}")
+       
         self.add_to_arrays(nodes)
-
-        #for i in nodes:
-         #   print((i.parent.node_num))
 
         if(depth == K):
             for i in nodes:
                 hrstc =  self.utility.heuristic(i)
-                if hrstc>0:
-                    print(hrstc)
        
                 if(human_cost > hrstc):
                     play = i
                     play.node_score = hrstc
                     human_cost = hrstc
                 if(beta != None):
-                    #print("hi beta")
+            
                     if(human_cost <= alpha):
                         play.node_score = human_cost
                         self.tree_nodes[node.node_num-1] = tuple([self.tree_nodes[node.node_num-1][0],human_cost])
@@ -64,7 +58,7 @@ class search:
                     play.node_score = val.node_score
                     human_cost = val.node_score
                 if(beta != None):
-                    #print("hi beta")
+                  
                     if(human_cost <= alpha):
                         play.node_score = human_cost
                         self.tree_nodes[node.node_num-1] = tuple([self.tree_nodes[node.node_num-1][0],human_cost]) 
@@ -79,29 +73,20 @@ class search:
         AI_cost = -math.inf
         play = node
         nodes =self.utility.action(node,"AI")
-        #node.node_num-1 = self.nodes_count-1
-        #for i in nodes:
-        #print(f"from Bot states{i.board:b}")
+      
         self.add_to_arrays(nodes)
         depth += 1
-        #print(f"from Bot states {depth}")
-        #for i in nodes:
-         #   print((i.parent.node_num))
-        #print(depth)
         if(depth == 1):
             self.tree_nodes.insert(0,(str(node.node_num), 0))
         if(depth == K):
             for i in nodes:
                 hrstc =  self.utility.heuristic(i)
-                if hrstc>0:
-                    print(hrstc)
-               
                 if(AI_cost < hrstc):
                     play = i
                     play.node_score = hrstc
                     AI_cost = hrstc
                 if(alpha != None):
-                    #print("hi alpha")
+                   
                     if(AI_cost >= beta):
                         play.node_score = AI_cost
                         self.tree_nodes[node.node_num-1] = tuple([self.tree_nodes[node.node_num-1][0],AI_cost]) 
@@ -116,7 +101,7 @@ class search:
                     play.node_score = val.node_score
                     AI_cost = val.node_score
                 if(alpha != None):
-                        #print("hi alpha")
+                     
                     if(AI_cost >= beta):
                         play.node_score = AI_cost
                         self.tree_nodes[node.node_num-1] = tuple([self.tree_nodes[node.node_num-1][0],AI_cost])

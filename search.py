@@ -41,7 +41,7 @@ class search:
         if(depth == K):
             for i in nodes:
                 hrstc =  self.utility.heuristic(i)
-                if hrstc<-1:
+                if hrstc>0:
                     print(hrstc)
        
                 if(human_cost > hrstc):
@@ -93,7 +93,7 @@ class search:
         if(depth == K):
             for i in nodes:
                 hrstc =  self.utility.heuristic(i)
-                if hrstc<0:
+                if hrstc>0:
                     print(hrstc)
                
                 if(AI_cost < hrstc):

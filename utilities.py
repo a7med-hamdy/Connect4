@@ -24,78 +24,90 @@ class utilities:
             start-=1
         while end<0:
             end+=1
-       
-       
-        #check vertical boundaries for diagonal
-        startr=row+3
-        endr=row-3
-        while startr>5:
-            startr-=1
-        while endr<0:
-            endr+=1
-    
+         
 
-        tmpend=end
         #check horizontal
-        while tmpend<=start-3:
+        while end<=start-3:
             equal=0
             exist=1
             for i in range(4):
                 temp=board
                 temp2=board
-                if (temp>>(9*(tmpend+i)) & 7) <= row:
+                if (temp>>(9*(end+i)) & 7) <= row:
                     exist=0
                     break
-                bit=temp2 & (1<<((9*(tmpend+i))+3+row))
-                bit=bit>>((9*(tmpend+i))+3+row)
+                bit=temp2 & (1<<((9*(end+i))+3+row))
+                bit=bit>>((9*(end+i))+3+row)
                 equal+=(bit^B)
             if exist==1 and equal==0:
                 score+=1
-            tmpend+=1
+            end+=1
+
+
+        # left diagonal boundires
+        uperleft=[row,col]
+        lowerright=[row,col]
+        uper=0
+        lower=0
+        while uperleft[0]<5 and uperleft[1]<6 and uper<3:
+            uperleft[0]=uperleft[0]+1
+            uperleft[1]=uperleft[1]+1
+            uper+=1
+        while lowerright[0]>0 and lowerright[1]>0 and lower<3:
+            lowerright[0]=lowerright[0]-1
+            lowerright[1]=lowerright[1]-1
+            lower+=1   
 
         # check left diagonal
-        tmpendh=end
-        tmpendr=endr
-        while tmpendh<=start-3 and tmpendr<=startr-3:
+        while lowerright[1]<=uperleft[1]-3 and lowerright[0]<=uperleft[0]-3:
             equal=0
             exist=1
-            j=tmpendr
             for i in range(4):
                 temp=board
                 temp2=board
-                if (temp>>(9*(tmpendh+i)) & 7) <= j+i:
+                if (temp>>(9*(lowerright[1]+i)) & 7) <= lowerright[0]+i:
                     exist=0
                     break
-                bit=temp2 & (1<<((9*(tmpendh+i))+3+j+i))
-                bit=bit>>((9*(tmpendh+i))+3+j+i)
+                bit=temp2 & (1<<((9*(lowerright[1]+i))+3+lowerright[0]+i))
+                bit=bit>>((9*(lowerright[1]+i))+3+lowerright[0]+i)
                 equal+=(bit^B)
             if exist==1 and equal==0:
-                print(j,tmpendh)
                 score+=1
-            tmpendh+=1
-            tmpendr+=1
+            lowerright[1]+=1
+            lowerright[0]+=1
 
+        # left diagonal boundires
+        uperright=[row,col]
+        lowerleft=[row,col]
+        uper=0
+        lower=0
+        while uperright[0]<5 and uperright[1]>0 and uper<3:
+            uperright[0]=uperright[0]+1
+            uperright[1]=uperright[1]-1
+            uper+=1
+        while lowerleft[0]>0 and lowerleft[1]<6 and lower<3:
+            lowerleft[0]=lowerleft[0]-1
+            lowerleft[1]=lowerleft[1]+1
+            lower+=1   
 
-        tmpendh=start
-        tmpendr=endr
         # check right diagonal 
-        while tmpendh>=end+3 and tmpendr<=startr-3:
+        while  lowerleft[1]>=uperright[1]+3 and lowerleft[0]<=uperright[0]-3:
             equal=0
             exist=1
-            j=tmpendr
+    
             for i in range(4):
                 temp=board
                 temp2=board
-                if (temp>>(9*(tmpendh-i)) & 7) <= j+i:
+                if (temp>>(9*(lowerleft[1]-i)) & 7) <= lowerleft[0]+i:
                     exist=0
                     break
-                bit=temp2 & (1<<((9*(tmpendh-i))+3+j+i))
-                bit=bit>>( (9*(tmpendh-i)+3+j+i) )
+                bit=temp2 & (1<<((9*(lowerleft[1]-i))+3+lowerleft[0]+i))
+                bit=bit>>( (9*(lowerleft[1]-i)+3+lowerleft[0]+i) )
                 equal+=(bit^B)
             if exist==1 and equal==0:
                 score+=1
-            tmpendh-=1
-            tmpendr+=1
+            lowerleft[1]-=1
+            uperright[0]+=1
         return score
 
 

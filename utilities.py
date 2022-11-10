@@ -64,8 +64,8 @@ class utilities:
                 if (temp>>(9*(tmpendh+i)) & 7) <= j:
                     exist=0
                     break
-                bit=temp2 & (1<<((9*(tmpend+i))+3+j))
-                bit=bit>>((9*(tmpend+i))+3+j)
+                bit=temp2 & (1<<((9*(tmpendh+i))+3+j))
+                bit=bit>>((9*(tmpendh+i))+3+j)
                 equal+=(bit^B)
             if exist==1 and equal==0:
                 score+=1
@@ -86,8 +86,8 @@ class utilities:
                 if (temp>>(9*(tmpendh-i)) & 7) <= j:
                     exist=0
                     break
-                bit=temp2 & (1<<((9*(tmpend-i))+3+j))
-                bit=bit>>( (9*(tmpend-i)+3+j) )
+                bit=temp2 & (1<<((9*(tmpendh-i))+3+j))
+                bit=bit>>( (9*(tmpendh-i)+3+j) )
                 equal+=(bit^B)
             if exist==1 and equal==0:
                 score+=1
@@ -100,6 +100,7 @@ class utilities:
     def action(self,sta,type):
         bit=1
         if type=="h":
+            #print("hi")
             bit=0
           
         actions=[]
@@ -112,8 +113,11 @@ class utilities:
             temp2=sta.board
             row=(temp>>(9*i)) & 7
             if (row)<7:
+                temp2=temp2 + ( 1 <<  (9*i) )
                 next=temp2 |(bit << ( (9*i)+(3+row) ) )
-                next=temp2 + ( 1 <<  (9*i) )
+                #print(f"{next:b}")
+                
+                #print(f"{next:b}")
                 #next=temp2 & ( row <<  (9*i) )
                 z=self.points(next,row,i,bit)
                 if type=="h":
@@ -136,9 +140,7 @@ class utilities:
             row=row>>(9*i)
             if (row)<7:
                 next=temp2 |(1 << ( (9*i)+(3+row) ) )
-                row+=1
-                next=temp2 |( 7 <<  (9*i) )
-                next=temp2 & ( row <<  (9*i) )
+                next=next + ( 1 <<  (9*i) )
                 z=self.points(next,row,i,1)
                 Aiscore+=z
             
@@ -150,9 +152,7 @@ class utilities:
             row=row>>(9*i)
             if (row)<7:
                 next=temp2 |(0 << ( (9*i)+(3+row) ) )
-                row+=1
-                next=temp2 |( 7 <<  (9*i) )
-                next=temp2 & ( row <<  (9*i) )
+                next=next + ( 7 <<  (9*i) )
                 z=self.points(next,row,i,0)
                 humanscore+=z
         return Aiscore-humanscore        

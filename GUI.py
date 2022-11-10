@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5 import uic
 from plot import Plotter
+from utilities import utilities
 
 FIXED = '''
 border: 2px insert rgb(85, 255, 255);
@@ -30,7 +31,10 @@ class Ui_MainWindow(QMainWindow):
         self.show()
         self.setFixedSize(1280,720)
     
-        
+        self.board = 0
+        self.remaining = 42
+        self.util = utilities()
+
         self.color = RED
         self.labels = [[None for _ in range(7)]for _ in range(6)]
         self.buttons = [None for _ in range(7)]
@@ -61,6 +65,7 @@ class Ui_MainWindow(QMainWindow):
     def setColor(self, lb: QLabel)->None:
         lb.setStyleSheet(f'background-color: {self.color};'+FIXED)
         lb.setProperty("state", self.color)
+        self.remaining -= 1
     
     def handleButton(self, column : int)->None:
         found = False
@@ -71,7 +76,9 @@ class Ui_MainWindow(QMainWindow):
                 self.calcScore(i, column)
                 break
         if found:
+            self.board = self.util.update(self.board, column)
             self.switchTurn()
+            
 
     def switchTurn(self)-> None:
         if self.color == RED:
@@ -79,9 +86,11 @@ class Ui_MainWindow(QMainWindow):
             self.turn_label.setText("AI")
             k = self.spin.value()
             s = self.combo.currentIndex()
-            l = [1,2,3,4,5]
-            E = [(1,2),(1,3),(3,4),(3,5)]
-            self.plotter.set_param(l,E,self.combo.currentText())
+            # depth and value tuple won't work think of another solution
+            returned = [("1",2),("5",6),("7",2),("9",0),("4",4)]
+            E = [("1","5"),("1","7"),("7","9"),("7","4")]
+            self.plotter.set_param([k[1] for k in returned],
+                        [tuple(int(item) for item in t) for t in E],[int(k[0]) for k in returned],self.combo.currentText())
 
             '''
                 do something with ai

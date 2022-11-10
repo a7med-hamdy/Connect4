@@ -1,4 +1,4 @@
-from igraph import Graph
+from igraph import Graph, Vertex
 import plotly.graph_objects as go
 from PyQt5 import QtCore, QtWidgets, QtWebEngineWidgets
 
@@ -21,17 +21,19 @@ class Plotter(QtWidgets.QWidget):
         self.vertices = None
         self.edges = None
         self.text = None
+        self.labels = None
 
-    def set_param(self, l , E, s):
-        self.vertices = l
+    def set_param(self, l , E, unique,s):
+        self.labels = l
+        self.vertices = unique
         self.edges = E
         self.text = s
 
     def show_graph(self):
         if self.edges is None or self.vertices is None:
             return
-        G = Graph(n = len(self.vertices), edges = self.edges, directed = False)
 
+        G = Graph(n = len(self.vertices), edges = self.edges, directed = False)
 
         lay = G.layout_reingold_tilford(root = [self.vertices[0]])
 
@@ -66,7 +68,7 @@ class Plotter(QtWidgets.QWidget):
         fig.add_trace(go.Scatter(x=Xn,
                         y=Yn,
                         mode='markers',
-                        name='bla',
+                        name='node',
                         marker=dict(symbol='star-triangle-up-dot',
                                         size=25,
                                         color='#6175c1',    #'#DB4551',
@@ -78,11 +80,11 @@ class Plotter(QtWidgets.QWidget):
 
         def make_annotations(pos, font_size=10, font_color='rgb(0,0,0)'):
             annotations = []
-            for k in self.vertices:
+            for k in range(len(self.labels)):
                 annotations.append(
                     dict(
-                        text=str(k), # or replace labels with a different list for the text within the circle
-                        x=pos[k][0], y=2*M-position[k][1],
+                        text=str(self.labels[k]), # or replace labels with a different list for the text within the circle
+                        x=pos[self.vertices[k]][0], y=2*M-position[self.vertices[k]][1],
                         xref='x1', yref='y1',
                         font=dict(color=font_color, size=font_size),
                         showarrow=False)

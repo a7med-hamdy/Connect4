@@ -100,14 +100,11 @@ class utilities:
     def action(self,sta,type):
         bit=1
         if type=="h":
-            #print("hi")
             bit=0
           
         actions=[]
         scoreh=sta.humanscore
         score=sta.Aiscore
-        remain=sta.remain-1
-        depth=sta.depth+1
         for i in range(7):
             temp=sta.board
             temp2=sta.board
@@ -115,15 +112,11 @@ class utilities:
             if (row)<7:
                 temp2=temp2 + ( 1 <<  (9*i) )
                 next=temp2 |(bit << ( (9*i)+(3+row) ) )
-                #print(f"{next:b}")
-                
-                #print(f"{next:b}")
-                #next=temp2 & ( row <<  (9*i) )
                 z=self.points(next,row,i,bit)
                 if type=="h":
-                    actions.append(state(next,remain,depth,score,scoreh+z))
+                    actions.append(state(next,i,score,scoreh+z))
                 else:
-                    actions.append(state(next,remain,depth,score+z,score))
+                    actions.append(state(next,i,score+z,score))
 
         return actions
 
@@ -132,30 +125,36 @@ class utilities:
     def heuristic(self,sta):
         Aiscore=0.0
         humanscore=0.0
+
         # check points for computer
         for i in range(7):
             temp=sta.board
             temp2=sta.board
             row=(temp>>(9*i)) & 7
-            row=row>>(9*i)
             if (row)<7:
                 next=temp2 |(1 << ( (9*i)+(3+row) ) )
                 next=next + ( 1 <<  (9*i) )
                 z=self.points(next,row,i,1)
                 Aiscore+=z
+        
             
         # check points for player
         for i in range(7):
             temp=sta.board
             temp2=sta.board
             row=(temp>>(9*i)) & 7
-            row=row>>(9*i)
             if (row)<7:
                 next=temp2 |(0 << ( (9*i)+(3+row) ) )
                 next=next + ( 7 <<  (9*i) )
                 z=self.points(next,row,i,0)
                 humanscore+=z
-        return Aiscore-humanscore        
+        return (Aiscore+sta.Aiscore)-(humanscore+sta.humanscore)
+
         # check potential score for computer
         # check potential score for player
-        
+
+    #update gui state
+    def update(self,board,col):
+        temp=board
+        temp=temp + (1<<(9*col) )
+        return temp

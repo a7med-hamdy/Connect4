@@ -146,7 +146,7 @@ class utilities:
             temp=sta.board
             temp2=sta.board
             row=(temp>>(9*i)) & 7
-            if (row)<7:
+            if (row)<6:
                 next=temp2 |(1 << ( (9*i)+(3+row) ) )
                 next=next + ( 1 <<  (9*i) )
                 z=self.points(next,row,i,1)
@@ -158,7 +158,7 @@ class utilities:
             temp=sta.board
             temp2=sta.board
             row=(temp>>(9*i)) & 7
-            if (row)<7:
+            if (row)<6:
                 next=temp2 |(0 << ( (9*i)+(3+row) ) )
                 next=next + ( 7 <<  (9*i) )
                 z=self.points(next,row,i,0)

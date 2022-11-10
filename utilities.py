@@ -169,6 +169,5 @@ class utilities:
 
     #update gui state
     def update(self,board,col):
-        temp=board
-        temp=temp + (1<<(9*col) )
+        temp=board + (1<<(9*col) )
         return temp

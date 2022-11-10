@@ -45,7 +45,7 @@ class search:
                         print("hi beta")
                         beta = max(beta, human_cost)
                         if(human_cost > alpha):
-                            return human_cost
+                            return play
         return play
 
 

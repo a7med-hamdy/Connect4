@@ -99,7 +99,8 @@ class Ui_MainWindow(QMainWindow):
                 break
         if found:
             self.switchTurn(column)
-            
+        else:
+            print("chosen a filled column")
 
     def switchTurn(self, column: int)-> None:
         if self.color == RED:
@@ -116,10 +117,8 @@ class Ui_MainWindow(QMainWindow):
             E = S.tree_edges
             self.plotter.set_param([k[1] for k in returned],
                         [tuple(int(item) for item in t) for t in E],[int(k[0]) for k in returned],self.combo.currentText())
-
-            '''
-                do something with ai
-            '''
+            self.board = stat.board
+            self.handleButton(stat.col)
         else:
             self.color = RED
             self.turn_label.setText("Human")

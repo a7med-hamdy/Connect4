@@ -114,9 +114,9 @@ class utilities:
                 next=temp2 |(bit << ( (9*i)+(3+row) ) )
                 z=self.points(next,row,i,bit)
                 if type=="h":
-                    actions.append(state(next,i,score,scoreh+z))
+                    actions.append(state(next,i,score,scoreh+z,sta))
                 else:
-                    actions.append(state(next,i,score+z,score))
+                    actions.append(state(next,i,score+z,score,sta))
 
         return actions
 

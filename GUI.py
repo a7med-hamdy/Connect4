@@ -100,7 +100,7 @@ class Ui_MainWindow(QMainWindow):
         if found:
             self.switchTurn(column)
         else:
-            print("chosen a filled column")
+            print(f"chosen a filled column {column}")
 
     def switchTurn(self, column: int)-> None:
         if self.color == RED:
@@ -112,7 +112,7 @@ class Ui_MainWindow(QMainWindow):
             self.board = self.util.update(self.board, column)
             stat = state(self.board, column, int(self.ai_score_label.text()), int(self.human_score_label.text()))
             S = search()
-            
+
             if z == 1:
                 stat = S.search(stat, "AI", k)
             else:

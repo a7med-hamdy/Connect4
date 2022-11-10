@@ -167,9 +167,11 @@ class Ui_MainWindow(QMainWindow):
             j_new += 1
 
         if counter_left + counter_right >= 3:
-            if counter_left + counter_right == 3 or counter_left + counter_right == 4:
+            if counter_left + counter_right == 3:
                 tmp += 1
-            elif counter_left + counter_right == 5 and (counter_left == 0 or counter_right == 0):
+            elif counter_left + counter_right == 4 and (counter_left == 0 or counter_right == 0):
+                tmp += 1
+            elif counter_left + counter_right >= 5 and (counter_left == 0 or counter_right == 0):
                 tmp += 1
             else:
                 tmp += 2
@@ -228,17 +230,21 @@ class Ui_MainWindow(QMainWindow):
             j_new += 1
 
         if counter_down_left + counter_up_right >= 3:
-            if counter_down_left + counter_up_right == 3 or counter_down_left + counter_up_right == 4:
+            if counter_down_left + counter_up_right == 3:
                 tmp += 1
-            elif counter_down_left + counter_up_right == 5 and (counter_down_left == 0 or counter_up_right == 0):
+            elif counter_down_left + counter_up_right == 4 and (counter_down_left == 0 or counter_up_right == 0):
+                tmp += 1
+            elif counter_down_left + counter_up_right >= 5 and (counter_down_left == 0 or counter_up_right == 0):
                 tmp += 1
             else:
                 tmp += 2
 
         if counter_down_right + counter_up_left >= 3:
-            if counter_down_right + counter_up_left == 3 or counter_down_right + counter_up_left == 4:
+            if counter_down_right + counter_up_left == 3:
                 tmp += 1
-            elif counter_down_right + counter_up_left == 5 and (counter_down_right == 0 or counter_up_left == 0):
+            elif counter_down_right + counter_up_left == 4 and (counter_down_right == 0 or counter_up_left == 0):
+                tmp += 1
+            elif counter_down_right + counter_up_left >= 5 and (counter_down_right == 0 or counter_up_left == 0):
                 tmp += 1
             else:
                 tmp += 2

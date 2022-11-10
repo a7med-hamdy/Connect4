@@ -123,7 +123,8 @@ class utilities:
             temp=sta.board
             temp2=sta.board
             row=(temp>>(9*i)) & 7
-            if (row)<7:
+            if (row)<6:
+            
                 temp2=temp2 + ( 1 <<  (9*i) )
                 next=temp2 |(bit << ( (9*i)+(3+row) ) )
                 z=self.points(next,row,i,bit)

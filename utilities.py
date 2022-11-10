@@ -16,7 +16,6 @@ class utilities:
             if equal==0:
                 score+=1
 
-
         #check horizontal bounderis
         start=col+3
         end=col-3
@@ -42,8 +41,7 @@ class utilities:
             if exist==1 and equal==0:
                 score+=1
             end+=1
-
-
+      
         # left diagonal boundires
         uperleft=[row,col]
         lowerright=[row,col]
@@ -76,7 +74,8 @@ class utilities:
             lowerright[1]+=1
             lowerright[0]+=1
 
-        # left diagonal boundires
+   
+        # right diagonal boundires
         uperright=[row,col]
         lowerleft=[row,col]
         uper=0
@@ -107,7 +106,8 @@ class utilities:
             if exist==1 and equal==0:
                 score+=1
             lowerleft[1]-=1
-            uperright[0]+=1
+            lowerleft[0]+=1
+  
         return score
 
 
@@ -127,6 +127,7 @@ class utilities:
                 temp2=temp2 + ( 1 <<  (9*i) )
                 next=temp2 |(bit << ( (9*i)+(3+row) ) )
                 z=self.points(next,row,i,bit)
+        
                 if type=="h":
                     actions.append(state(next,i,score,scoreh+z,sta))
                 else:
@@ -139,7 +140,7 @@ class utilities:
     def heuristic(self,sta):
         Aiscore=0.0
         humanscore=0.0
-
+       
         # check points for computer
         for i in range(7):
             temp=sta.board

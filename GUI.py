@@ -4,7 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5 import uic
-import sys
+from plot import Plotter
 
 FIXED = '''
 border: 2px insert rgb(85, 255, 255);
@@ -29,7 +29,8 @@ class Ui_MainWindow(QMainWindow):
         uic.loadUi("design.ui",baseinstance=self, resource_suffix='_rc')
         self.show()
         self.setFixedSize(1280,720)
-
+    
+        
         self.color = RED
         self.labels = [[None for _ in range(7)]for _ in range(6)]
         self.buttons = [None for _ in range(7)]
@@ -41,6 +42,12 @@ class Ui_MainWindow(QMainWindow):
 
         self.spin = self.findChild(QSpinBox, "spinBox")
         self.combo = self.findChild(QComboBox, "comboBox")
+
+        self.Tabs = self.findChild(QTabWidget, "tabWidget")
+        self.plotter = Plotter()
+        layout = QVBoxLayout()
+        layout.addWidget(self.plotter)
+        self.Tabs.widget(1).setLayout(layout)
 
         for i in range(ROWS):
             for j in range (COLS):
@@ -72,6 +79,10 @@ class Ui_MainWindow(QMainWindow):
             self.turn_label.setText("AI")
             k = self.spin.value()
             s = self.combo.currentIndex()
+            l = [1,2,3,4,5]
+            E = [(1,2),(1,3),(3,4),(3,5)]
+            self.plotter.set_param(l,E,self.combo.currentText())
+
             '''
                 do something with ai
             '''
@@ -184,7 +195,7 @@ class Ui_MainWindow(QMainWindow):
             curr = int(self.ai_score_label.text())
             self.ai_score_label.setText(str(curr+tmp))
 
-
-app = QtWidgets.QApplication(sys.argv)
-ui = Ui_MainWindow()
-app.exec_()
+if __name__ == "__main__":
+    app = QtWidgets.QApplication([])
+    ui = Ui_MainWindow()
+    app.exec_()

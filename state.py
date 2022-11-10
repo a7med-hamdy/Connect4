@@ -1,5 +1,5 @@
 class state:
-    def __init__(self, board,col,Aiscore,humanscore,parent):
+    def __init__(self, board,col,Aiscore,humanscore,parent= None):
         self.board=board
         self.col=col
         self.Aiscore=Aiscore

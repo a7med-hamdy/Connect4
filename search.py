@@ -6,6 +6,7 @@ from utilities import utilities
 class search:
 
     def __init__(self):
+        self.nodes_count = 0
         self.nodes = []
         self.edges = []
         self.utility = utilities()
@@ -23,8 +24,11 @@ class search:
         human_cost = -math.inf
         play = node
         nodes =self.utility.action(node, "h")
+        
+
         depth += 1
-       # print(len(nodes))
+        print(f"from human states {depth}")
+
         #for i in nodes:
          #   print(f"from humans states{i.board:b}")
         if(depth == K):
@@ -41,7 +45,7 @@ class search:
 
         else:
             for i in nodes:
-                val = self.search(i, "AI", K, alpha, beta)
+                val = self.search(i, "AI", K, depth,alpha, beta)
                 if(human_cost > val.Aiscore-val.humanscore):
                     play = i
                     human_cost = val.Aiscore-val.humanscore
@@ -58,8 +62,12 @@ class search:
         play = node
         nodes =self.utility.action(node,"AI")
         #for i in nodes:
-            #print(f"from Bot states{i.board:b}")
+        #print(f"from Bot states{i.board:b}")
+
         depth += 1
+        
+        print(f"from Bot states {depth}")
+        #print(depth)
         if(depth == K):
             for i in nodes:
                 hrstc =  self.utility.heuristic(i)
@@ -70,7 +78,7 @@ class search:
                     #print("hi alpha")
                     if(AI_cost >= beta):
                         return play
-                alpha = max(alpha, AI_cost)
+                    alpha = max(alpha, AI_cost)
         else:
             for i in nodes:
                 val = self.search(i, "h",K, depth,alpha, beta)

@@ -123,14 +123,14 @@ class utilities:
             temp=sta.board
             temp2=sta.board
             row=(temp>>(9*i)) & 7
-            if (row)<7:
+            if (row)<6:
                 temp2=temp2 + ( 1 <<  (9*i) )
                 next=temp2 |(bit << ( (9*i)+(3+row) ) )
                 z=self.points(next,row,i,bit)
                 if type=="h":
                     actions.append(state(next,i,score,scoreh+z,sta))
                 else:
-                    actions.append(state(next,i,score+z,score,sta))
+                    actions.append(state(next,i,score+z,scoreh,sta))
 
         return actions
 
@@ -145,7 +145,7 @@ class utilities:
             temp=sta.board
             temp2=sta.board
             row=(temp>>(9*i)) & 7
-            if (row)<7:
+            if (row)<6:
                 next=temp2 |(1 << ( (9*i)+(3+row) ) )
                 next=next + ( 1 <<  (9*i) )
                 z=self.points(next,row,i,1)
@@ -157,7 +157,7 @@ class utilities:
             temp=sta.board
             temp2=sta.board
             row=(temp>>(9*i)) & 7
-            if (row)<7:
+            if (row)<6:
                 next=temp2 |(0 << ( (9*i)+(3+row) ) )
                 next=next + ( 7 <<  (9*i) )
                 z=self.points(next,row,i,0)

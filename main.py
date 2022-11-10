@@ -16,7 +16,9 @@ if __name__== "__main__":
             x = x << 9
         temp = temp + x
         board = temp
-        stat = s.search(state(board, 0, 0, 0),"AI",10,alpha=None,beta=None)
+        stat = s.search(state(board, a,0, 0, 0),"AI",2,alpha=None,beta=None)
+        s.print_nodes_edges()
+        #print(stat)
         board = stat.board
 
         

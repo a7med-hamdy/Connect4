@@ -167,7 +167,10 @@ class Ui_MainWindow(QMainWindow):
             j_new += 1
 
         if counter_left + counter_right >= 3:
-            tmp +=1
+            if counter_left + counter_right == 3 or counter_left + counter_right == 4:
+                tmp += 1
+            elif counter_left + counter_right == 5:
+                tmp += 2
 
         counter_down_left = 0
         #check down left
@@ -223,10 +226,16 @@ class Ui_MainWindow(QMainWindow):
             j_new += 1
 
         if counter_down_left + counter_up_right >= 3:
-            tmp+=1
+            if counter_down_left + counter_up_right == 3 or counter_down_left + counter_up_right == 4:
+                tmp += 1
+            elif counter_down_left + counter_up_right == 5:
+                tmp += 2
 
         if counter_down_right + counter_up_left >= 3:
-            tmp+=1
+            if counter_down_right + counter_up_left == 3 or counter_down_right + counter_up_left == 4:
+                tmp += 1
+            elif counter_down_right + counter_up_left == 5:
+                tmp += 2
         
         if self.color == RED:
             curr = int(self.human_score_label.text())

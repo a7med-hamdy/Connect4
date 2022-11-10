@@ -31,9 +31,10 @@ class search:
         play = node
         nodes =self.utility.action(node, "h")
         depth += 1
-       
-        self.add_to_arrays(nodes)
-
+        if(alpha == None):
+            self.add_to_arrays(nodes)
+        else:
+            self.add_to_arrays(nodes, True)
         if(depth == K):
             for i in nodes:
                 hrstc =  self.utility.heuristic(i)
@@ -42,8 +43,8 @@ class search:
                     play = i
                     play.node_score = hrstc
                     human_cost = hrstc
+                    self.tree_nodes[i.node_num-1] = tuple([self.tree_nodes[i.node_num-1][0], human_cost])
                 if(beta != None):
-            
                     if(human_cost <= alpha):
                         play.node_score = human_cost
                         self.tree_nodes[node.node_num-1] = tuple([self.tree_nodes[node.node_num-1][0],human_cost])
@@ -74,7 +75,10 @@ class search:
         play = node
         nodes =self.utility.action(node,"AI")
       
-        self.add_to_arrays(nodes)
+        if(alpha == None):
+            self.add_to_arrays(nodes)
+        else:
+            self.add_to_arrays(nodes, True)
         depth += 1
         if(depth == 1):
             self.tree_nodes.insert(0,(str(node.node_num), 0))
@@ -85,6 +89,7 @@ class search:
                     play = i
                     play.node_score = hrstc
                     AI_cost = hrstc
+                self.tree_nodes[i.node_num-1] = tuple([self.tree_nodes[i.node_num-1][0], AI_cost])
                 if(alpha != None):
                    
                     if(AI_cost >= beta):
@@ -112,15 +117,18 @@ class search:
         return play
 
 
-    def add_to_arrays(self, nodes):
+    def add_to_arrays(self, nodes, pruning= False):
         
         for i in nodes:
             self.nodes_count += 1
             i.node_num = self.nodes_count
-
-            self.tree_nodes.append((str(i.node_num), 0))
+            if(pruning):
+                self.tree_nodes.append((str(i.node_num), "pruned"))
+            else:
+                self.tree_nodes.append((str(i.node_num), 0))
             self.tree_edges.append((str(i.parent.node_num), str(i.node_num)))
-    
+
+
     def print_nodes_edges(self):
         print(self.tree_nodes)
         print()

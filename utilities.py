@@ -16,6 +16,7 @@ class utilities:
             if equal==0:
                 score+=1
 
+
         #check horizontal bounderis
         start=col+3
         end=col-3
@@ -23,15 +24,16 @@ class utilities:
             start-=1
         while end<0:
             end+=1
-
-        #check vertical boundaries
+       
+       
+        #check vertical boundaries for diagonal
         startr=row+3
         endr=row-3
         while startr>5:
             startr-=1
         while endr<0:
             endr+=1
-
+    
 
         tmpend=end
         #check horizontal
@@ -57,17 +59,18 @@ class utilities:
         while tmpendh<=start-3 and tmpendr<=startr-3:
             equal=0
             exist=1
-            temp=board
-            temp2=board
             j=tmpendr
             for i in range(4):
-                if (temp>>(9*(tmpendh+i)) & 7) <= j:
+                temp=board
+                temp2=board
+                if (temp>>(9*(tmpendh+i)) & 7) <= j+i:
                     exist=0
                     break
-                bit=temp2 & (1<<((9*(tmpendh+i))+3+j))
-                bit=bit>>((9*(tmpendh+i))+3+j)
+                bit=temp2 & (1<<((9*(tmpendh+i))+3+j+i))
+                bit=bit>>((9*(tmpendh+i))+3+j+i)
                 equal+=(bit^B)
             if exist==1 and equal==0:
+                print(j,tmpendh)
                 score+=1
             tmpendh+=1
             tmpendr+=1
@@ -79,21 +82,20 @@ class utilities:
         while tmpendh>=end+3 and tmpendr<=startr-3:
             equal=0
             exist=1
-            temp=board
-            temp2=board
             j=tmpendr
             for i in range(4):
-                if (temp>>(9*(tmpendh-i)) & 7) <= j:
+                temp=board
+                temp2=board
+                if (temp>>(9*(tmpendh-i)) & 7) <= j+i:
                     exist=0
                     break
-                bit=temp2 & (1<<((9*(tmpendh-i))+3+j))
-                bit=bit>>( (9*(tmpendh-i)+3+j) )
+                bit=temp2 & (1<<((9*(tmpendh-i))+3+j+i))
+                bit=bit>>( (9*(tmpendh-i)+3+j+i) )
                 equal+=(bit^B)
             if exist==1 and equal==0:
                 score+=1
             tmpendh-=1
             tmpendr+=1
-        
         return score
 
 

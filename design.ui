@@ -928,6 +928,23 @@ font-size: 50px;</string>
        <enum>QFrame::Raised</enum>
       </property>
      </widget>
+     <widget class="QToolButton" name="toolButton">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>120</y>
+        <width>41</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(212, 212, 212);
+border: 2px insert rgb(85, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>...</string>
+      </property>
+     </widget>
      <zorder>frame_3</zorder>
      <zorder>frame_2</zorder>
      <zorder>frame</zorder>
@@ -937,6 +954,7 @@ font-size: 50px;</string>
      <zorder>comboBox</zorder>
      <zorder>horizontalLayoutWidget_2</zorder>
      <zorder>label_2</zorder>
+     <zorder>toolButton</zorder>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">

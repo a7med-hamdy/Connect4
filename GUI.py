@@ -14,7 +14,7 @@ border: 2px insert rgb(85, 255, 255);
 border-radius: 37px;
 '''
 
-EMPTY = "empty"
+EMPTY = "rgb(212, 212, 212)"
 RED = "red"
 YELLOW = "yellow"
 
@@ -33,15 +33,20 @@ class Ui_MainWindow(QMainWindow):
         self.show()
         self.setFixedSize(1280,720)
     
-        self.board = 0
-        self.remaining = 42
+        
         self.util = utilities()
 
-        self.color = RED
+        
         self.labels = [[None for _ in range(7)]for _ in range(6)]
         self.buttons = [None for _ in range(7)]
         self.turn_label = self.findChild(QLabel, "turn")
-        self.turn_label.setText("Human")
+        self.restart_button = self.findChild(QToolButton, "toolButton")
+
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("restart.png"),
+                                          QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.restart_button.setIcon(icon)
+        self.restart_button.clicked.connect(self.restart)
 
         self.human_score_label = self.findChild(QLabel, "player_score")
         self.ai_score_label = self.findChild(QLabel, "ai_score")
@@ -62,7 +67,22 @@ class Ui_MainWindow(QMainWindow):
                     self.buttons[j].clicked.connect(partial(self.handleButton, int(self.buttons[j].objectName()[-1])))
                 self.labels[i][j] = self.findChild(QLabel, "l" + str(i) + str(j))
                 self.labels[i][j].setProperty("state", EMPTY)
-        
+
+        self.restart()
+
+    def restart(self):
+        self.board = 0
+        self.remaining = 42
+        self.color = EMPTY
+        self.turn_label.setText("Human")
+        for i in range(ROWS):
+            for j in range (COLS):
+                self.labels[i][j].setProperty("state", EMPTY)
+                self.setColor(self.labels[i][j])
+        self.color = RED
+        self.human_score_label.setText(str(0))
+        self.ai_score_label.setText(str(0))
+
 
     def setColor(self, lb: QLabel)->None:
         lb.setStyleSheet(f'background-color: {self.color};'+FIXED)
@@ -91,7 +111,7 @@ class Ui_MainWindow(QMainWindow):
             self.board = self.util.update(self.board, column)
             stat = state(self.board, column, int(self.ai_score_label.text()), int(self.human_score_label.text()))
             S = search()
-            S.search(stat, "AI", k, alpha= None, beta= None)
+            stat = S.search(stat, "AI", k, alpha= None, beta= None)
             returned = S.tree_nodes
             E = S.tree_edges
             self.plotter.set_param([k[1] for k in returned],

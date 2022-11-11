@@ -160,13 +160,11 @@ class utilities:
             row=(temp>>(9*i)) & 7
             if (row)<6:
                 next=temp2 |(0 << ( (9*i)+(3+row) ) )
-                next=next + ( 7 <<  (9*i) )
+                next=next + ( 1 <<  (9*i) )
                 z=self.points(next,row,i,0)
                 humanscore+=z
         return (Aiscore+sta.Aiscore)-(humanscore+sta.humanscore)
 
-        # check potential score for computer
-        # check potential score for player
 
     #update gui state
     def update(self,board,col):

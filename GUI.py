@@ -117,9 +117,6 @@ class Ui_MainWindow(QMainWindow):
                 stat = S.search(stat, "AI", k)
             else:
                 stat = S.search(stat, "AI", k, alpha= None, beta= None)
-            print()   
-            print(stat.Aiscore)
-            print(stat.humanscore)
             returned = S.tree_nodes
             E = S.tree_edges
             self.plotter.set_param([k[1] for k in returned],

@@ -24,7 +24,7 @@ class utilities:
         while end<0:
             end+=1
          
-
+    
         #check horizontal
         while end<=start-3:
             equal=0
@@ -127,7 +127,6 @@ class utilities:
                 temp2=temp2 + ( 1 <<  (9*i) )
                 next=temp2 |(bit << ( (9*i)+(3+row) ) )
                 z=self.points(next,row,i,bit)
-        
                 if type=="h":
                     actions.append(state(next,i,score,scoreh+z,sta))
                 else:

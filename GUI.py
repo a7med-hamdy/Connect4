@@ -19,13 +19,8 @@ EMPTY = "rgb(212, 212, 212)"
 RED = "red"
 YELLOW = "yellow"
 
-
-
 ROWS = 6
 COLS = 7
-
-# x_list = [-1, 0, 1, 1, 1, 0,-1,-1]
-# y_list = [-1,-1,-1, 0, 1, 1, 1, 0]
 
 class Ui_MainWindow(QMainWindow):
     def __init__(self ):
@@ -129,15 +124,29 @@ class Ui_MainWindow(QMainWindow):
                 start = time.time()
                 stat = S.search(stat, "AI", k, alpha= None, beta= None)
                 end = time.time()
-            returned = S.tree_nodes
+            app.restoreOverrideCursor()
+
+            maxs = []
+            mins = []
+            lbs = []
+            unique = []
+
+            for k in S.tree_nodes:
+                lbs.append(k[1])
+                unique.append(int(k[0]))
+                if(k[2] == "max"):
+                    maxs.append(int(k[0]))
+                else:
+                    mins.append(int(k[0]))
+
             E = S.tree_edges
 
-            app.restoreOverrideCursor()
+            
             self.time.setText(str(end-start) + " sec")
-            self.nodes.setText(str(len(returned)))
+            self.nodes.setText(str(len(S.tree_nodes)))
+            self.plotter.set_param(lbs, [tuple(int(item) for item in t) for t in E],
+             unique, self.combo.currentText(), maxs, mins)
 
-            self.plotter.set_param([k[1] for k in returned],
-                        [tuple(int(item) for item in t) for t in E],[int(k[0]) for k in returned],self.combo.currentText())
             self.board = stat.board
             self.handleButton(stat.col)
         else:

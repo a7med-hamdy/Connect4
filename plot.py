@@ -22,12 +22,16 @@ class Plotter(QtWidgets.QWidget):
         self.edges = None
         self.text = None
         self.labels = None
+        self.max = None
+        self.min = None
 
-    def set_param(self, l , E, unique,s):
+    def set_param(self, l , E, unique,s, maxi, mini):
         self.labels = l
         self.vertices = unique
         self.edges = E
         self.text = s
+        self.max = maxi
+        self.min = mini
 
     def show_graph(self):
         if self.edges is None or self.vertices is None:
@@ -38,13 +42,17 @@ class Plotter(QtWidgets.QWidget):
         lay = G.layout_reingold_tilford(root = [self.vertices[0]])
 
         position = {k: lay[k] for k in self.vertices}
-        # print(position)
+        
         Y = [lay[k][1] for k in self.vertices]
         M = max(Y)
 
+        Xmax = [position[k][0] for k in self.max]
+        Ymax = [2*M-position[k][1] for k in self.max]
 
-        Xn = [position[k][0] for k in self.vertices]
-        Yn = [2*M-position[k][1] for k in self.vertices]
+        Xmin = [position[k][0] for k in self.min]
+        Ymin = [2*M-position[k][1] for k in self.min]
+
+
         Xe = []
         Ye = []
         for edge in self.edges:
@@ -65,11 +73,24 @@ class Plotter(QtWidgets.QWidget):
                         line=dict(color='rgb(210,210,210)', width=1),
                         hoverinfo='none'
                         ))
-        fig.add_trace(go.Scatter(x=Xn,
-                        y=Yn,
+
+        fig.add_trace(go.Scatter(x=Xmax,
+                        y=Ymax,
                         mode='markers',
                         name='node',
-                        marker=dict(symbol='star-triangle-up-dot',
+                        marker=dict(symbol='triangle-up-dot',
+                                        size=25,
+                                        color='rgb(255,0,0)',    #'#DB4551',
+                                        line=dict(color='rgb(50,50,50)', width=1)
+                                        ),
+                        opacity=0.8
+                        ))
+                        
+        fig.add_trace(go.Scatter(x=Xmin,
+                        y=Ymin,
+                        mode='markers',
+                        name='node',
+                        marker=dict(symbol='triangle-down-dot',
                                         size=25,
                                         color='#6175c1',    #'#DB4551',
                                         line=dict(color='rgb(50,50,50)', width=1)

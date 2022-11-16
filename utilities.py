@@ -1,7 +1,7 @@
 from state import state
 class utilities:
 
-
+    # take the state and the row and column and type of the play and retuen the score of the added type
     def points(self,sta,row,col,B):
         #check vertical
         score=0
@@ -110,10 +110,10 @@ class utilities:
   
         return score
 
-
+    # this function take the stat and the type of action an return array of the action 
     def action(self,sta,type):
         bit=1
-        if type=="h":
+        if type=="h": #check if it is human or Ai h for hunam
             bit=0
           
         actions=[]
@@ -126,7 +126,7 @@ class utilities:
             if (row)<6:
                 temp2=temp2 + ( 1 <<  (9*i) )
                 next=temp2 |(bit << ( (9*i)+(3+row) ) )
-                z=self.points(next,row,i,bit)
+                z=self.points(next,row,i,bit)# this function to get the increased score of the add point
                 if type=="h":
                     actions.append(state(next,i,score,scoreh+z,sta))
                 else:

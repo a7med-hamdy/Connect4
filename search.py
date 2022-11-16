@@ -115,7 +115,7 @@ class search:
                     play.node_score = hrstc
                     human_cost = hrstc
                 #add the cost of the last node to it in the tree
-                self.tree_nodes[i.node_num-1] = tuple([self.tree_nodes[i.node_num-1][0], human_cost, self.tree_nodes[i.node_num-1][2]])
+                self.tree_nodes[i.node_num-1] = tuple([self.tree_nodes[i.node_num-1][0], human_cost, "terminal"])
                 #if pruning is enabled 
                 if(beta != None):
                     beta = min(beta, human_cost)
@@ -196,7 +196,7 @@ class search:
                     play = i
                     AI_cost = hrstc
                 #add the cost of the last node to it in the tree
-                self.tree_nodes[i.node_num-1] = tuple([self.tree_nodes[i.node_num-1][0], AI_cost, self.tree_nodes[i.node_num-1][2]])
+                self.tree_nodes[i.node_num-1] = tuple([self.tree_nodes[i.node_num-1][0], AI_cost, "terminal"])
                 #if pruning is enabled 
                 if(alpha != None):
                     alpha = max(alpha, AI_cost)

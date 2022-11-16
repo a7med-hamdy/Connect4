@@ -166,29 +166,12 @@ class Ui_MainWindow(QMainWindow):
         if counter_left + counter_right >= 3:
             if counter_left + counter_right == 3:
                 tmp += 1
-            elif counter_left + counter_right == 4:
-                if counter_left == 0 or counter_right == 0:
-                    tmp += 1
-                else:
-                    tmp += 2
-            elif counter_left + counter_right == 5:
-                if counter_left == 0 or counter_right == 0:
-                    tmp += 1
-                elif counter_left == 1 or counter_right == 1:
-                    tmp += 2
-                else:
-                    tmp += 3
-            elif counter_left + counter_right == 6:
-                if counter_left == 0 or counter_right == 0:
-                    tmp += 1
-                elif counter_left == 1 or counter_right == 1:
-                    tmp += 2
-                elif counter_left == 2 or counter_right == 2:
-                    tmp += 3
-                else:
-                    tmp += 4
+            elif counter_left + counter_right == 4 and (counter_left == 0 or counter_right == 0):
+                tmp += 1
+            elif counter_left + counter_right >= 5 and (counter_left == 0 or counter_right == 0):
+                tmp += 1
             else:
-                print("unexpected score error")
+                tmp += 2
 
         counter_down_left = 0
         #check down left
@@ -243,63 +226,25 @@ class Ui_MainWindow(QMainWindow):
             i_new += 1
             j_new += 1
 
-
         if counter_down_left + counter_up_right >= 3:
             if counter_down_left + counter_up_right == 3:
                 tmp += 1
-            elif counter_down_left + counter_up_right == 4:
-                if counter_down_left == 0 or counter_up_right == 0:
-                    tmp += 1
-                else:
-                    tmp += 2
-            elif counter_down_left + counter_up_right == 5:
-                if counter_down_left == 0 or counter_up_right == 0:
-                    tmp += 1
-                elif counter_down_left == 1 or counter_up_right == 1:
-                    tmp += 2
-                else:
-                    tmp += 3
-            elif counter_down_left + counter_up_right == 6:
-                if counter_down_left == 0 or counter_up_right == 0:
-                    tmp += 1
-                elif counter_down_left == 1 or counter_up_right == 1:
-                    tmp += 2
-                elif counter_down_left == 2 or counter_up_right == 2:
-                    tmp += 3
-                else:
-                    tmp += 4
+            elif counter_down_left + counter_up_right == 4 and (counter_down_left == 0 or counter_up_right == 0):
+                tmp += 1
+            elif counter_down_left + counter_up_right >= 5 and (counter_down_left == 0 or counter_up_right == 0):
+                tmp += 1
             else:
-                print("unexpected score error")
-
-
+                tmp += 2
 
         if counter_down_right + counter_up_left >= 3:
             if counter_down_right + counter_up_left == 3:
                 tmp += 1
-            elif counter_down_right + counter_up_left == 4:
-                if counter_down_right == 0 or counter_up_left == 0:
-                    tmp += 1
-                else:
-                    tmp += 2
-            elif counter_down_right + counter_up_left == 5:
-                if counter_down_right == 0 or counter_up_left == 0:
-                    tmp += 1
-                elif counter_down_right == 1 or counter_up_left == 1:
-                    tmp += 2
-                else:
-                    tmp += 3
-            elif counter_down_right + counter_up_left == 6:
-                if counter_down_right == 0 or counter_up_left == 0:
-                    tmp += 1
-                elif counter_down_right == 1 or counter_up_left == 1:
-                    tmp += 2
-                elif counter_down_right == 2 or counter_up_left == 2:
-                    tmp += 3
-                else:
-                    tmp += 4
+            elif counter_down_right + counter_up_left == 4 and (counter_down_right == 0 or counter_up_left == 0):
+                tmp += 1
+            elif counter_down_right + counter_up_left >= 5 and (counter_down_right == 0 or counter_up_left == 0):
+                tmp += 1
             else:
-                print("unexpected score error")
-
+                tmp += 2
         
         if self.color == RED:
             curr = int(self.human_score_label.text())

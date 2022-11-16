@@ -146,7 +146,7 @@ class utilities:
             temp2=sta.board
             row=(temp>>(9*i)) & 7
             if (row)<6:
-                divide=+1
+                divide=divide+1.0
                 next=temp2 |(1 << ( (9*i)+(3+row) ) )
                 next=next + ( 1 <<  (9*i) )
                 z=self.points(next,row,i,1)
@@ -163,7 +163,8 @@ class utilities:
                 next=next + ( 1 <<  (9*i) )
                 z=self.points(next,row,i,0)
                 humanscore+=z    
-        return ( ((Aiscore/divide)+(sta.Aiscore/1.0))- ((humanscore/divide)+(sta.humanscore/1.0)) )
+        print(round(( ((Aiscore/divide)+(sta.Aiscore/1.0))- ((humanscore/divide)+(sta.humanscore/1.0)) ),2))
+        return round(( ((Aiscore/divide)+(sta.Aiscore/1.0))- ((humanscore/divide)+(sta.humanscore/1.0)) ),2)
 
 
     #update gui state

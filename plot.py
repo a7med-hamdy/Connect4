@@ -95,7 +95,7 @@ class Plotter(QtWidgets.QWidget):
                         mode='markers',
                         name='node',
                         marker=dict(symbol='square-dot',
-                                        size=25,
+                                        size=17,
                                         color='rgb(0,255,0)',    #'#DB4551',
                                         line=dict(color='rgb(50,50,50)', width=1)
                                         ),

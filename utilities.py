@@ -161,8 +161,8 @@ class utilities:
                 next=temp2 |(0 << ( (9*i)+(3+row) ) )
                 next=next + ( 1 <<  (9*i) )
                 z=self.points(next,row,i,0)
-                humanscore+=z
-        return (Aiscore+sta.Aiscore)-(humanscore+sta.humanscore)
+                humanscore+=z    
+        return ((Aiscore+sta.Aiscore)-(humanscore+sta.humanscore))
 
 
     #update gui state

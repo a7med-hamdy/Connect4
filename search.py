@@ -137,11 +137,13 @@ class search:
                     beta = min(beta, human_cost)
                     if(human_cost <= alpha):
                         break
-                    
+        print(tieset)                    
         #if there is no pruning and there is a tie between all states
-        if(alpha == None and len(tieset) == 1):
+        
+        """if(alpha == None and len(tieset) == 1):
             #choose a random state
             play = nodes[randint(0, len(nodes)-1)]
+        """
         #set the score of the state's value to the cost returned from the previous loop
         self.tree_nodes[node.node_num-1] = tuple([self.tree_nodes[node.node_num-1][0],human_cost])
         
@@ -216,11 +218,12 @@ class search:
                     alpha = max(alpha, AI_cost)
                     if(AI_cost >= beta):
                         break
-        #if there is no pruning and there is a tie between all states                    
-        if(alpha == None and len(tieset) == 1):
+        #if there is no pruning and there is a tie between all states
+        print(tieset)                    
+        """if(alpha == None and len(tieset) == 1):
             #choose a random state
             play = nodes[randint(0, len(nodes)-1)]
-
+        """
         #set the score of the state's value to the cost returned from the previous loop
         self.tree_nodes[node.node_num-1] = tuple([self.tree_nodes[node.node_num-1][0],AI_cost]) 
 

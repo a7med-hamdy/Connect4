@@ -139,7 +139,7 @@ class utilities:
     def heuristic(self,sta):
         Aiscore=0.0
         humanscore=0.0
-        divide=0.0
+        divide=1.0
         # check potiential points for Ai
         for i in range(7):
             temp=sta.board
@@ -163,7 +163,7 @@ class utilities:
                 next=next + ( 1 <<  (9*i) )
                 z=self.points(next,row,i,0)
                 humanscore+=z    
-        print(round(( ((Aiscore/divide)+(sta.Aiscore/1.0))- ((humanscore/divide)+(sta.humanscore/1.0)) ),2))
+       
         return round(( ((Aiscore/divide)+(sta.Aiscore/1.0))- ((humanscore/divide)+(sta.humanscore/1.0)) ),2)
 
 

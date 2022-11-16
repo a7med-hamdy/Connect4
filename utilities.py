@@ -1,3 +1,4 @@
+import math
 from state import state
 class utilities:
 
@@ -163,8 +164,9 @@ class utilities:
                 next=next + ( 1 <<  (9*i) )
                 z=self.points(next,row,i,0)
                 humanscore+=z    
-       
-        return round(( ((Aiscore/divide)+(sta.Aiscore/1.0))- ((humanscore/divide)+(sta.humanscore/1.0)) ),2)
+        if divide>1:
+            divide=divide-1.0
+        return math.floor( ( ((Aiscore/divide)+(sta.Aiscore/1.0))- ((humanscore/divide)+(sta.humanscore/1.0)) ) *100.0)/100.0
 
 
     #update gui state

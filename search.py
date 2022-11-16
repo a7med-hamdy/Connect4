@@ -115,7 +115,7 @@ class search:
                     play.node_score = hrstc
                     human_cost = hrstc
                 #add the cost of the last node to it in the tree
-                self.tree_nodes[i.node_num-1] = tuple([self.tree_nodes[i.node_num-1][0], human_cost, self.tree_nodes[node.node_num-1][2]])
+                self.tree_nodes[i.node_num-1] = tuple([self.tree_nodes[i.node_num-1][0], human_cost, self.tree_nodes[i.node_num-1][2]])
                 #if pruning is enabled 
                 if(beta != None):
                     beta = min(beta, human_cost)
@@ -173,17 +173,16 @@ class search:
         play = node #initial starting state
         nodes =self.utility.action(node,"AI") #do all possible actions as an AI
         tieset = set() #set to determine if the a tie happened at a given node
-
         #this section is for building the tree
         if(alpha == None):
             self.add_to_arrays(nodes,player= "human")
         else:
             self.add_to_arrays(nodes, player= "human",pruning =True)
-        
+
         depth += 1 #increase the depth
         #this section is for building the tree since the this method does not take into account the root node
         if(depth == 1):
-            self.tree_nodes.insert(0,(str(node.node_num), 0))
+            self.tree_nodes.insert(0,(str(node.node_num), 0, "max"))
             
         #if we reached the maximum allowed depth we start using the heuristic function
         if(depth == K):
@@ -197,7 +196,7 @@ class search:
                     play = i
                     AI_cost = hrstc
                 #add the cost of the last node to it in the tree
-                self.tree_nodes[i.node_num-1] = tuple([self.tree_nodes[i.node_num-1][0], AI_cost, self.tree_nodes[node.node_num-1][2]])
+                self.tree_nodes[i.node_num-1] = tuple([self.tree_nodes[i.node_num-1][0], AI_cost, self.tree_nodes[i.node_num-1][2]])
                 #if pruning is enabled 
                 if(alpha != None):
                     alpha = max(alpha, AI_cost)

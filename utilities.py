@@ -139,13 +139,14 @@ class utilities:
     def heuristic(self,sta):
         Aiscore=0.0
         humanscore=0.0
-
+        divide=0
         # check potiential points for Ai
         for i in range(7):
             temp=sta.board
             temp2=sta.board
             row=(temp>>(9*i)) & 7
             if (row)<6:
+                divide=+1
                 next=temp2 |(1 << ( (9*i)+(3+row) ) )
                 next=next + ( 1 <<  (9*i) )
                 z=self.points(next,row,i,1)
@@ -162,7 +163,7 @@ class utilities:
                 next=next + ( 1 <<  (9*i) )
                 z=self.points(next,row,i,0)
                 humanscore+=z    
-        return ((Aiscore+sta.Aiscore)-(humanscore+sta.humanscore))
+        return (((Aiscore/divide)+sta.Aiscore)-((humanscore/divide)+sta.humanscore))
 
 
     #update gui state

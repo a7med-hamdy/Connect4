@@ -115,7 +115,7 @@ class search:
                     play.node_score = hrstc
                     human_cost = hrstc
                 #add the cost of the last node to it in the tree
-                self.tree_nodes[i.node_num-1] = tuple([self.tree_nodes[i.node_num-1][0], human_cost])
+                self.tree_nodes[i.node_num-1] = tuple([self.tree_nodes[i.node_num-1][0], human_cost, self.tree_nodes[node.node_num-1][2]])
                 #if pruning is enabled 
                 if(beta != None):
                     beta = min(beta, human_cost)
@@ -148,7 +148,7 @@ class search:
             #choose a random state
             play = nodes[randint(0, len(nodes)-1)]
         #set the score of the state's value to the cost returned from the previous loop
-        self.tree_nodes[node.node_num-1] = tuple([self.tree_nodes[node.node_num-1][0],human_cost])
+        self.tree_nodes[node.node_num-1] = tuple([self.tree_nodes[node.node_num-1][0],human_cost, self.tree_nodes[node.node_num-1][2]])
         
         #play.node_score = human_cost
         return play
@@ -197,7 +197,7 @@ class search:
                     play = i
                     AI_cost = hrstc
                 #add the cost of the last node to it in the tree
-                self.tree_nodes[i.node_num-1] = tuple([self.tree_nodes[i.node_num-1][0], AI_cost])
+                self.tree_nodes[i.node_num-1] = tuple([self.tree_nodes[i.node_num-1][0], AI_cost, self.tree_nodes[node.node_num-1][2]])
                 #if pruning is enabled 
                 if(alpha != None):
                     alpha = max(alpha, AI_cost)
@@ -228,7 +228,7 @@ class search:
             play = nodes[randint(0, len(nodes)-1)]
 
         #set the score of the state's value to the cost returned from the previous loop
-        self.tree_nodes[node.node_num-1] = tuple([self.tree_nodes[node.node_num-1][0],AI_cost]) 
+        self.tree_nodes[node.node_num-1] = tuple([self.tree_nodes[node.node_num-1][0],AI_cost, self.tree_nodes[node.node_num-1][2]]) 
 
         return play
 

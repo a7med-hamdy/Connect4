@@ -135,12 +135,12 @@ class utilities:
         return actions
 
 
-
+    # this is the hurisiic function take a state and ge the value
     def heuristic(self,sta):
         Aiscore=0.0
         humanscore=0.0
-       
-        # check points for computer
+
+        # check potiential points for Ai
         for i in range(7):
             temp=sta.board
             temp2=sta.board
@@ -152,7 +152,7 @@ class utilities:
                 Aiscore+=z
         
             
-        # check points for player
+        # check potiential points for player
         for i in range(7):
             temp=sta.board
             temp2=sta.board

@@ -24,14 +24,16 @@ class Plotter(QtWidgets.QWidget):
         self.labels = None
         self.max = None
         self.min = None
+        self.terminal = None
 
-    def set_param(self, l , E, unique,s, maxi, mini):
+    def set_param(self, l , E, unique,s, maxi, mini, terminal):
         self.labels = l
         self.vertices = unique
         self.edges = E
         self.text = s
         self.max = maxi
         self.min = mini
+        self.terminal = terminal
 
     def show_graph(self):
         if self.edges is None or self.vertices is None:
@@ -52,6 +54,8 @@ class Plotter(QtWidgets.QWidget):
         Xmin = [position[k][0] for k in self.min]
         Ymin = [2*M-position[k][1] for k in self.min]
 
+        Xt = [position[k][0] for k in self.terminal]
+        Yt = [2*M-position[k][1] for k in self.terminal]
 
         Xe = []
         Ye = []
@@ -81,6 +85,18 @@ class Plotter(QtWidgets.QWidget):
                         marker=dict(symbol='triangle-up-dot',
                                         size=25,
                                         color='rgb(255,0,0)',    #'#DB4551',
+                                        line=dict(color='rgb(50,50,50)', width=1)
+                                        ),
+                        opacity=0.8
+                        ))
+
+        fig.add_trace(go.Scatter(x=Xt,
+                        y=Yt,
+                        mode='markers',
+                        name='node',
+                        marker=dict(symbol='square-dot',
+                                        size=25,
+                                        color='rgb(0,255,0)',    #'#DB4551',
                                         line=dict(color='rgb(50,50,50)', width=1)
                                         ),
                         opacity=0.8

@@ -130,14 +130,17 @@ class Ui_MainWindow(QMainWindow):
             mins = []
             lbs = []
             unique = []
+            terminal = []
 
             for k in S.tree_nodes:
                 lbs.append(k[1])
                 unique.append(int(k[0]))
                 if(k[2] == "max"):
                     maxs.append(int(k[0]))
-                else:
+                elif(k[2] == "min"):
                     mins.append(int(k[0]))
+                else:
+                    terminal.append(int(k[0]))
 
             E = S.tree_edges
 
@@ -145,7 +148,7 @@ class Ui_MainWindow(QMainWindow):
             self.time.setText(str(end-start) + " sec")
             self.nodes.setText(str(len(S.tree_nodes)))
             self.plotter.set_param(lbs, [tuple(int(item) for item in t) for t in E],
-             unique, self.combo.currentText(), maxs, mins)
+             unique, self.combo.currentText(), maxs, mins, terminal)
 
             self.board = stat.board
             self.handleButton(stat.col)

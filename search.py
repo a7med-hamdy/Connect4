@@ -18,6 +18,8 @@ class search:
         self.nodes_count = 1
         # array to hold the tree nodes 
         self.tree_nodes = []
+        self.tree_nodes_max = []
+        self.tree_nodes_min = []
         # array to hold the tree edges
         self.tree_edges = []
         #utility class used to decide and get new actions 
@@ -96,9 +98,9 @@ class search:
         tieset = set() #set to determine if the a tie happened at a given node
         #this section is for building the tree
         if(alpha == None):
-            self.add_to_arrays(nodes)
+            self.add_to_arrays(nodes,player= "AI")
         else:
-            self.add_to_arrays(nodes, True)
+            self.add_to_arrays(nodes, player= "AI",pruning = True)
         
         #if we reached the maximum allowed depth we start using the heuristic function
         if(depth == K):
@@ -174,9 +176,9 @@ class search:
 
         #this section is for building the tree
         if(alpha == None):
-            self.add_to_arrays(nodes)
+            self.add_to_arrays(nodes,player= "human")
         else:
-            self.add_to_arrays(nodes, True)
+            self.add_to_arrays(nodes, player= "human",pruning =True)
         
         depth += 1 #increase the depth
         #this section is for building the tree since the this method does not take into account the root node
@@ -231,7 +233,7 @@ class search:
         return play
 
 
-    def add_to_arrays(self, nodes, pruning= False):
+    def add_to_arrays(self, nodes, player,pruning= False):
         """
             function to add the actions explored to the tree's nodes and edges
 
@@ -247,10 +249,18 @@ class search:
             i.node_num = self.nodes_count
             #if pruning is enabled the we print "pruned" in the tree
             if(pruning):
-                self.tree_nodes.append((str(i.node_num), "pruned"))
+                if(player == "human"):
+                    self.tree_nodes_min.append((str(i.node_num), "pruned"))
+                else:
+                    self.tree_nodes_max.append((str(i.node_num), "pruned"))
+                #self.tree_nodes.append((str(i.node_num), "pruned"))
             #if not we append the a default cost of 0
             else:
-                self.tree_nodes.append((str(i.node_num), 0))
+                if(player == "human"):
+                    self.tree_nodes_min.append((str(i.node_num), 0))
+                else:
+                    self.tree_nodes_max.append((str(i.node_num), 0))
+                #self.tree_nodes.append((str(i.node_num), 0))
             #join the parent with its children in the edges array
             self.tree_edges.append((str(i.parent.node_num), str(i.node_num)))
 

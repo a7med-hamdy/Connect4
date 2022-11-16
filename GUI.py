@@ -8,6 +8,7 @@ from plot import Plotter
 from utilities import utilities
 from state import state
 from search import search
+import time
 
 FIXED = '''
 border: 2px insert rgb(85, 255, 255);
@@ -50,6 +51,8 @@ class Ui_MainWindow(QMainWindow):
 
         self.human_score_label = self.findChild(QLabel, "player_score")
         self.ai_score_label = self.findChild(QLabel, "ai_score")
+        self.nodes = self.findChild(QLabel, "lb_nodes")
+        self.time = self.findChild(QLabel, "lb_time")
 
         self.spin = self.findChild(QSpinBox, "spinBox")
         self.combo = self.findChild(QComboBox, "comboBox")
@@ -82,6 +85,8 @@ class Ui_MainWindow(QMainWindow):
         self.color = RED
         self.human_score_label.setText(str(0))
         self.ai_score_label.setText(str(0))
+        self.time.setText("")
+        self.nodes.setText("")
 
 
     def setColor(self, lb: QLabel)->None:
@@ -113,12 +118,24 @@ class Ui_MainWindow(QMainWindow):
             stat = state(self.board, column, int(self.ai_score_label.text()), int(self.human_score_label.text()))
             S = search()
 
+            start = end = 0
+
+            app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
             if z == 1:
+                start = time.time()
                 stat = S.search(stat, "AI", k)
+                end = time.time()
             else:
+                start = time.time()
                 stat = S.search(stat, "AI", k, alpha= None, beta= None)
+                end = time.time()
             returned = S.tree_nodes
             E = S.tree_edges
+
+            app.restoreOverrideCursor()
+            self.time.setText(str(end-start) + " sec")
+            self.nodes.setText(str(len(returned)))
+
             self.plotter.set_param([k[1] for k in returned],
                         [tuple(int(item) for item in t) for t in E],[int(k[0]) for k in returned],self.combo.currentText())
             self.board = stat.board

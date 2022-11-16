@@ -945,6 +945,74 @@ border: 2px insert rgb(85, 255, 255);</string>
        <string>...</string>
       </property>
      </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>980</x>
+        <y>80</y>
+        <width>61</width>
+        <height>79</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: yellow;
+font-size: 20px;</string>
+      </property>
+      <property name="text">
+       <string>Time: </string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lb_time">
+      <property name="geometry">
+       <rect>
+        <x>980</x>
+        <y>160</y>
+        <width>291</width>
+        <height>79</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: yellow;
+font-size: 20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>980</x>
+        <y>270</y>
+        <width>171</width>
+        <height>79</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: yellow;
+font-size: 20px;</string>
+      </property>
+      <property name="text">
+       <string>Nodes Expanded:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lb_nodes">
+      <property name="geometry">
+       <rect>
+        <x>980</x>
+        <y>340</y>
+        <width>291</width>
+        <height>79</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: yellow;
+font-size: 20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
      <zorder>frame_3</zorder>
      <zorder>frame_2</zorder>
      <zorder>frame</zorder>
@@ -955,6 +1023,10 @@ border: 2px insert rgb(85, 255, 255);</string>
      <zorder>horizontalLayoutWidget_2</zorder>
      <zorder>label_2</zorder>
      <zorder>toolButton</zorder>
+     <zorder>label_5</zorder>
+     <zorder>lb_time</zorder>
+     <zorder>label_6</zorder>
+     <zorder>lb_nodes</zorder>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">

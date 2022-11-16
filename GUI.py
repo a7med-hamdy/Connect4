@@ -108,13 +108,14 @@ class Ui_MainWindow(QMainWindow):
             self.turn_label.setText("AI")
             k = self.spin.value()
             z = self.combo.currentIndex()
-            # depth and value tuple won't work think of another solution
+            
             self.board = self.util.update(self.board, column)
+            # Create state and search
             stat = state(self.board, column, int(self.ai_score_label.text()), int(self.human_score_label.text()))
             S = search()
 
             start = end = 0
-
+            # AI makes the move and time is measured
             app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
             if z == 1:
                 start = time.time()
@@ -151,6 +152,7 @@ class Ui_MainWindow(QMainWindow):
              unique, self.combo.currentText(), maxs, mins, terminal)
 
             self.board = stat.board
+            # make AI move
             self.handleButton(stat.col)
         else:
             self.color = RED

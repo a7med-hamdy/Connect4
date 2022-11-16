@@ -96,6 +96,7 @@ class search:
         nodes =self.utility.action(node, "h")   #do all possible actions as a human
         depth += 1  #increase the depth
         tieset = set() #set to determine if the a tie happened at a given node
+        counter = 0
         #this section is for building the tree
         if(alpha == None):
             self.add_to_arrays(nodes,player= "AI")
@@ -121,6 +122,7 @@ class search:
                     beta = min(beta, human_cost)
                     if(human_cost <= alpha):
                         break
+                counter += 1
                     
         #we have not reached the specified depth
         else:
@@ -130,6 +132,7 @@ class search:
                 val = self.__search(i, "AI", K, depth,alpha, beta)
                 #add the node's score to the tiebreaker set 
                 tieset.add(val.node_score)
+                i.node_score = val.node_score
                 #choose the min between the current cost and the returned score
                 if(human_cost > val.node_score):
                     play = i
@@ -140,13 +143,20 @@ class search:
                     beta = min(beta, human_cost)
                     if(human_cost <= alpha):
                         break
+                counter += 1
         
         #print(f"from human depth {depth}",tieset)                    
 
         #if there is no pruning and there is a tie between all states
-        if(alpha == None and len(tieset) == 1):
+        if(len(tieset) == 1):
             #choose a random state
-            play = nodes[randint(0, len(nodes)-1)]
+            if(alpha == None):
+                play = nodes[randint(0, len(nodes)-1)]
+            else:
+                try:
+                    play = nodes[randint(0,counter)]
+                except:
+                    play = nodes[0]
         #set the score of the state's value to the cost returned from the previous loop
         self.tree_nodes[node.node_num-1] = tuple([self.tree_nodes[node.node_num-1][0],human_cost, self.tree_nodes[node.node_num-1][2]])
         
@@ -173,6 +183,7 @@ class search:
         play = node #initial starting state
         nodes =self.utility.action(node,"AI") #do all possible actions as an AI
         tieset = set() #set to determine if the a tie happened at a given node
+        counter = 0
         #this section is for building the tree
         if(alpha == None):
             self.add_to_arrays(nodes,player= "human")
@@ -202,6 +213,7 @@ class search:
                     alpha = max(alpha, AI_cost)
                     if(AI_cost >= beta):
                         break
+                counter +=1
         #we have not reached the specified depth
         else:
             #loop on all possible actions
@@ -210,6 +222,7 @@ class search:
                 val = self.__search(i, "h",K, depth,alpha, beta)
                 #add the node's score to the tiebreaker set
                 tieset.add(val.node_score)
+                i.node_score = val.node_score
                 #choose the max between the current cost and the returned score
                 if(AI_cost < val.node_score):
                     play = i
@@ -220,11 +233,18 @@ class search:
                     alpha = max(alpha, AI_cost)
                     if(AI_cost >= beta):
                         break
+                counter +=1
         #if there is no pruning and there is a tie between all states
         #print(f"from AI depth {depth}",tieset)                      
-        if(alpha == None and len(tieset) == 1):
+        if(len(tieset) == 1):
             #choose a random state
-            play = nodes[randint(0, len(nodes)-1)]
+            if(alpha == None):
+                play = nodes[randint(0, len(nodes)-1)]
+            else:
+                try:
+                    play = nodes[randint(0,counter)]
+                except:
+                    play = nodes[0]
 
         #set the score of the state's value to the cost returned from the previous loop
         self.tree_nodes[node.node_num-1] = tuple([self.tree_nodes[node.node_num-1][0],AI_cost, self.tree_nodes[node.node_num-1][2]]) 

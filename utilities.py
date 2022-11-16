@@ -139,7 +139,7 @@ class utilities:
     def heuristic(self,sta):
         Aiscore=0.0
         humanscore=0.0
-        divide=0
+        divide=0.0
         # check potiential points for Ai
         for i in range(7):
             temp=sta.board

@@ -106,6 +106,7 @@ class search:
             for i in nodes:
                 hrstc =  self.utility.heuristic(i)  #calculate their heurisitc
                 tieset.add(hrstc)   #add it to the tiebreaker set
+                i.node_score = hrstc
                 #choose the min between the current cost and the heuristc
                 if(human_cost > hrstc):
                     play = i
@@ -137,13 +138,13 @@ class search:
                     beta = min(beta, human_cost)
                     if(human_cost <= alpha):
                         break
-        print(tieset)                    
-        #if there is no pruning and there is a tie between all states
         
-        """if(alpha == None and len(tieset) == 1):
+        #print(f"from human depth {depth}",tieset)                    
+
+        #if there is no pruning and there is a tie between all states
+        if(alpha == None and len(tieset) == 1):
             #choose a random state
             play = nodes[randint(0, len(nodes)-1)]
-        """
         #set the score of the state's value to the cost returned from the previous loop
         self.tree_nodes[node.node_num-1] = tuple([self.tree_nodes[node.node_num-1][0],human_cost])
         
@@ -176,6 +177,7 @@ class search:
             self.add_to_arrays(nodes)
         else:
             self.add_to_arrays(nodes, True)
+        
         depth += 1 #increase the depth
         #this section is for building the tree since the this method does not take into account the root node
         if(depth == 1):
@@ -188,9 +190,9 @@ class search:
                 hrstc =  self.utility.heuristic(i) #calculate their heurisitc
                 tieset.add(hrstc) #add it to the tiebreaker set
                 #choose the max between the current cost and the heuristc
+                i.node_score = hrstc
                 if(AI_cost < hrstc):
                     play = i
-                    play.node_score = hrstc
                     AI_cost = hrstc
                 #add the cost of the last node to it in the tree
                 self.tree_nodes[i.node_num-1] = tuple([self.tree_nodes[i.node_num-1][0], AI_cost])
@@ -198,7 +200,6 @@ class search:
                 if(alpha != None):
                     alpha = max(alpha, AI_cost)
                     if(AI_cost >= beta):
-                        play.node_score = AI_cost
                         break
         #we have not reached the specified depth
         else:
@@ -219,11 +220,11 @@ class search:
                     if(AI_cost >= beta):
                         break
         #if there is no pruning and there is a tie between all states
-        print(tieset)                    
-        """if(alpha == None and len(tieset) == 1):
+        #print(f"from AI depth {depth}",tieset)                      
+        if(alpha == None and len(tieset) == 1):
             #choose a random state
             play = nodes[randint(0, len(nodes)-1)]
-        """
+
         #set the score of the state's value to the cost returned from the previous loop
         self.tree_nodes[node.node_num-1] = tuple([self.tree_nodes[node.node_num-1][0],AI_cost]) 
 

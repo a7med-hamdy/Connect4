@@ -163,7 +163,7 @@ class utilities:
                 next=next + ( 1 <<  (9*i) )
                 z=self.points(next,row,i,0)
                 humanscore+=z    
-        return (((Aiscore/divide)+sta.Aiscore)-((humanscore/divide)+sta.humanscore))
+        return ( ((Aiscore/divide)+(sta.Aiscore/1.0))- ((humanscore/divide)+(sta.humanscore/1.0)) )
 
 
     #update gui state

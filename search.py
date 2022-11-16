@@ -250,17 +250,15 @@ class search:
             #if pruning is enabled the we print "pruned" in the tree
             if(pruning):
                 if(player == "human"):
-                    self.tree_nodes_min.append((str(i.node_num), "pruned"))
+                    self.tree_nodes.append((str(i.node_num), "pruned","min"))
                 else:
-                    self.tree_nodes_max.append((str(i.node_num), "pruned"))
-                #self.tree_nodes.append((str(i.node_num), "pruned"))
+                    self.tree_nodes.append((str(i.node_num), "pruned", "max"))
             #if not we append the a default cost of 0
             else:
                 if(player == "human"):
-                    self.tree_nodes_min.append((str(i.node_num), 0))
+                    self.tree_nodes.append((str(i.node_num), 0, "min"))
                 else:
-                    self.tree_nodes_max.append((str(i.node_num), 0))
-                #self.tree_nodes.append((str(i.node_num), 0))
+                    self.tree_nodes.append((str(i.node_num), 0, "max"))
             #join the parent with its children in the edges array
             self.tree_edges.append((str(i.parent.node_num), str(i.node_num)))
 
